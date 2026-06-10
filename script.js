@@ -156,136 +156,154 @@ function openAuthModal() {
     document.getElementById('authModal').classList.add('active');
 }
 
-document.getElementById('doLoginBtn')?.addEventListener('click', () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    if (!email || !password) {
-        showNotification('Harap isi email dan password!', 'error');
-        return;
-    }
-    
-    const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
-    
-    if (user) {
-        currentUser = user;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        document.getElementById('dropdownUserName').innerText = user.name;
-        
-        const savedCart = localStorage.getItem(`cart_${user.id}`);
-        cart = savedCart ? JSON.parse(savedCart) : [];
-        updateCartBadge();
-        
-        document.getElementById('authModal').classList.remove('active');
-        showNotification(`Login berhasil! Selamat datang, ${user.name}!`, 'success');
-        
-        setTimeout(() => location.reload(), 1000);
-    } else {
-        showNotification('Email atau password salah!', 'error');
-    }
-});
-
-document.getElementById('doSignupBtn')?.addEventListener('click', () => {
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    const address = document.getElementById('signupAddress').value;
-    
-    if (!name || !email || !password || !address) {
-        showNotification('Harap isi semua field!', 'error');
-        return;
-    }
-    
-    let users = getUsers();
-    
-    if (users.find(u => u.email === email)) {
-        showNotification('Email sudah terdaftar!', 'error');
-        return;
-    }
-    
-    const newUser = { 
-        id: users.length + 1,
-        name, 
-        email, 
-        password, 
-        address,
-        role: 'user', 
-        joined: new Date().toLocaleDateString('id-ID') 
-    };
-    
-    users.push(newUser);
-    saveUsers(users);
-    
-    currentUser = newUser;
-    localStorage.setItem('currentUser', JSON.stringify(newUser));
-    document.getElementById('dropdownUserName').innerText = name;
-    cart = [];
-    
+function closeAuthModal() {
     document.getElementById('authModal').classList.remove('active');
-    showNotification(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
-    
-    setTimeout(() => location.reload(), 1000);
-});
+}
 
-document.getElementById('logoutMenuBtn')?.addEventListener('click', () => {
-    currentUser = null;
-    localStorage.removeItem('currentUser');
-    cart = [];
-    document.getElementById('dropdownUserName').innerText = 'Guest';
-    document.getElementById('userDropdown').classList.remove('active');
-    showNotification('Anda telah logout', 'warning');
-    location.reload();
-});
+// LOGIN
+const loginBtn = document.getElementById('doLoginBtn');
+if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        if (!email || !password) {
+            showNotification('Harap isi email dan password!', 'error');
+            return;
+        }
+        
+        const users = getUsers();
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            document.getElementById('dropdownUserName').innerText = user.name;
+            
+            const savedCart = localStorage.getItem(`cart_${user.id}`);
+            cart = savedCart ? JSON.parse(savedCart) : [];
+            updateCartBadge();
+            
+            closeAuthModal();
+            showNotification(`Login berhasil! Selamat datang, ${user.name}!`, 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showNotification('Email atau password salah!', 'error');
+        }
+    });
+}
+
+// SIGNUP
+const signupBtn = document.getElementById('doSignupBtn');
+if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const address = document.getElementById('signupAddress').value;
+        
+        if (!name || !email || !password || !address) {
+            showNotification('Harap isi semua field!', 'error');
+            return;
+        }
+        
+        let users = getUsers();
+        
+        if (users.find(u => u.email === email)) {
+            showNotification('Email sudah terdaftar!', 'error');
+            return;
+        }
+        
+        const newUser = { 
+            id: users.length + 1,
+            name, 
+            email, 
+            password, 
+            address,
+            role: 'user', 
+            joined: new Date().toLocaleDateString('id-ID') 
+        };
+        
+        users.push(newUser);
+        saveUsers(users);
+        
+        currentUser = newUser;
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        document.getElementById('dropdownUserName').innerText = name;
+        cart = [];
+        
+        closeAuthModal();
+        showNotification(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
+        setTimeout(() => location.reload(), 1000);
+    });
+}
+
+// LOGOUT
+const logoutBtn = document.getElementById('logoutMenuBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        cart = [];
+        document.getElementById('dropdownUserName').innerText = 'Guest';
+        document.getElementById('userDropdown').classList.remove('active');
+        showNotification('Anda telah logout', 'warning');
+        location.reload();
+    });
+}
 
 // ==================== CHECKOUT ====================
-document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-    if (cart.length === 0) {
-        showNotification('Keranjang kosong!', 'warning');
-        return;
-    }
-    
-    const address = document.getElementById('orderAddress').value;
-    if (!address) {
-        showNotification('Harap isi alamat pengiriman!', 'error');
-        return;
-    }
-    
-    let existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-    
-    const newOrder = {
-        id: existingOrders.length + 1,
-        userId: currentUser.id,
-        userName: currentUser.name,
-        userEmail: currentUser.email,
-        userAddress: address,
-        items: cart.map(item => ({
-            id: item.id,
-            name: item.name,
-            brand: item.brand,
-            price: item.price,
-            quantity: item.quantity
-        })),
-        total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
-        date: new Date().toLocaleString('id-ID'),
-        status: 'pending'
-    };
-    
-    existingOrders.push(newOrder);
-    localStorage.setItem('orders', JSON.stringify(existingOrders));
-    
-    showNotification('🎉 Pesanan berhasil!', 'success');
-    
-    cart = [];
-    localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
-    updateCartBadge();
-    renderCart();
-    document.getElementById('orderAddress').value = '';
-    document.getElementById('cartModal').classList.remove('active');
-});
+const checkoutBtn = document.getElementById('checkoutBtn');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            showNotification('Keranjang kosong!', 'warning');
+            return;
+        }
+        
+        const address = document.getElementById('orderAddress').value;
+        if (!address) {
+            showNotification('Harap isi alamat pengiriman!', 'error');
+            return;
+        }
+        
+        let existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+        
+        const newOrder = {
+            id: existingOrders.length + 1,
+            userId: currentUser.id,
+            userName: currentUser.name,
+            userEmail: currentUser.email,
+            userAddress: address,
+            items: cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                brand: item.brand,
+                price: item.price,
+                quantity: item.quantity
+            })),
+            total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
+            date: new Date().toLocaleString('id-ID'),
+            status: 'pending'
+        };
+        
+        existingOrders.push(newOrder);
+        localStorage.setItem('orders', JSON.stringify(existingOrders));
+        
+        showNotification('🎉 Pesanan berhasil!', 'success');
+        
+        cart = [];
+        localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+        updateCartBadge();
+        renderCart();
+        document.getElementById('orderAddress').value = '';
+        document.getElementById('cartModal').classList.remove('active');
+    });
+}
 
-// ==================== ADMIN PANEL ====================
+// ==================== ADMIN PANEL (FIXED - PASTI BISA DI KLIK) ====================
 function openAdminPanel() {
+    console.log("openAdminPanel dipanggil"); // Debug
     if (!currentUser) {
         showNotification('Silakan login terlebih dahulu!', 'warning');
         openAuthModal();
@@ -306,11 +324,16 @@ function updateAdminDashboard() {
     const ordersData = JSON.parse(localStorage.getItem('orders') || '[]');
     
     // Update stats
-    document.getElementById('statUsers').innerText = usersData.length;
-    document.getElementById('statProducts').innerText = products.length;
-    document.getElementById('statOrders').innerText = ordersData.length;
+    const statUsers = document.getElementById('statUsers');
+    const statProducts = document.getElementById('statProducts');
+    const statOrders = document.getElementById('statOrders');
+    const statRevenue = document.getElementById('statRevenue');
+    
+    if (statUsers) statUsers.innerText = usersData.length;
+    if (statProducts) statProducts.innerText = products.length;
+    if (statOrders) statOrders.innerText = ordersData.length;
     const totalRevenue = ordersData.reduce((sum, order) => sum + order.total, 0);
-    document.getElementById('statRevenue').innerText = totalRevenue.toLocaleString('id-ID');
+    if (statRevenue) statRevenue.innerText = totalRevenue.toLocaleString('id-ID');
     
     // Chart
     const ctx = document.getElementById('adminChart')?.getContext('2d');
@@ -381,136 +404,200 @@ function updateAdminDashboard() {
 }
 
 // ==================== EVENT LISTENERS ====================
-document.getElementById('userBtn')?.addEventListener('click', () => {
-    if (!currentUser) openAuthModal();
-    else document.getElementById('userDropdown').classList.toggle('active');
-});
 
-document.getElementById('cartBtn')?.addEventListener('click', () => {
-    if (!currentUser) {
-        showNotification('Silakan login terlebih dahulu!', 'warning');
-        openAuthModal();
-        return;
-    }
-    renderCart();
-    document.getElementById('cartModal').classList.add('active');
-});
+// User dropdown
+const userBtn = document.getElementById('userBtn');
+if (userBtn) {
+    userBtn.addEventListener('click', () => {
+        if (!currentUser) {
+            openAuthModal();
+        } else {
+            document.getElementById('userDropdown').classList.toggle('active');
+        }
+    });
+}
 
-document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentUser) {
-        document.getElementById('profileName').innerText = currentUser.name;
-        document.getElementById('profileEmail').innerText = currentUser.email;
-        document.getElementById('profileAddress').innerText = currentUser.address || 'Belum diisi';
-        document.getElementById('profileRole').innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
-        document.getElementById('profileSince').innerText = currentUser.joined || '2026';
-        document.getElementById('profileModal').classList.add('active');
-    } else {
-        openAuthModal();
-    }
-    document.getElementById('userDropdown').classList.remove('active');
-});
+// Cart button
+const cartBtn = document.getElementById('cartBtn');
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        if (!currentUser) {
+            showNotification('Silakan login terlebih dahulu!', 'warning');
+            openAuthModal();
+            return;
+        }
+        renderCart();
+        document.getElementById('cartModal').classList.add('active');
+    });
+}
 
-document.getElementById('settingsMenuBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('settingsModal').classList.add('active');
-    document.getElementById('userDropdown').classList.remove('active');
-});
+// Profile menu
+const profileMenuBtn = document.getElementById('profileMenuBtn');
+if (profileMenuBtn) {
+    profileMenuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentUser) {
+            document.getElementById('profileName').innerText = currentUser.name;
+            document.getElementById('profileEmail').innerText = currentUser.email;
+            document.getElementById('profileAddress').innerText = currentUser.address || 'Belum diisi';
+            document.getElementById('profileRole').innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
+            document.getElementById('profileSince').innerText = currentUser.joined || '2026';
+            document.getElementById('profileModal').classList.add('active');
+        } else {
+            openAuthModal();
+        }
+        document.getElementById('userDropdown').classList.remove('active');
+    });
+}
 
-document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openAdminPanel();
-    document.getElementById('userDropdown').classList.remove('active');
-});
+// Settings menu
+const settingsMenuBtn = document.getElementById('settingsMenuBtn');
+if (settingsMenuBtn) {
+    settingsMenuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('settingsModal').classList.add('active');
+        document.getElementById('userDropdown').classList.remove('active');
+    });
+}
+
+// ADMIN PANEL BUTTON - YANG INI PENTING!
+const adminMenuBtn = document.getElementById('adminMenuBtn');
+if (adminMenuBtn) {
+    console.log("Admin menu button ditemukan");
+    adminMenuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("Admin menu button diklik!");
+        openAdminPanel();
+        document.getElementById('userDropdown').classList.remove('active');
+    });
+} else {
+    console.log("Admin menu button TIDAK ditemukan!");
+}
 
 // Dark mode
-document.getElementById('darkModeBtn')?.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const icon = document.querySelector('#darkModeBtn i');
-    icon.classList.toggle('fa-moon');
-    icon.classList.toggle('fa-sun');
-});
+const darkModeBtn = document.getElementById('darkModeBtn');
+if (darkModeBtn) {
+    darkModeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const icon = document.querySelector('#darkModeBtn i');
+        if (icon) {
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+    });
+}
 
-document.getElementById('settingsDarkBtn')?.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const icon = document.querySelector('#darkModeBtn i');
-    icon.classList.toggle('fa-moon');
-    icon.classList.toggle('fa-sun');
-});
+const settingsDarkBtn = document.getElementById('settingsDarkBtn');
+if (settingsDarkBtn) {
+    settingsDarkBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const icon = document.querySelector('#darkModeBtn i');
+        if (icon) {
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+    });
+}
 
 // Close modals
-const closeButtons = ['closeAuthModal', 'closeProfileModal', 'closeSettingsModal', 'closeAdminModal', 'closeCartModal', 'closeProfileBtn', 'closeSettingsBtn', 'closeAdminBtn'];
-closeButtons.forEach(id => {
-    document.getElementById(id)?.addEventListener('click', () => {
-        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-    });
+const closeModalButtons = ['closeAuthModal', 'closeProfileModal', 'closeSettingsModal', 'closeAdminModal', 'closeCartModal', 'closeProfileBtn', 'closeSettingsBtn', 'closeAdminBtn'];
+closeModalButtons.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        });
+    }
 });
 
 // Navigation
 function showPage(pageId) {
     document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.add('active');
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     const activeLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
     if (activeLink) activeLink.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
+const navLinks = document.querySelectorAll('.nav-link, .footer-links a');
+navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.getAttribute('data-page');
         if (page) showPage(page);
-        document.getElementById('navMenu')?.classList.remove('active');
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu) navMenu.classList.remove('active');
     });
 });
 
-document.getElementById('shopBtn')?.addEventListener('click', () => {
-    showPage('home');
-    document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
-});
+const shopBtn = document.getElementById('shopBtn');
+if (shopBtn) {
+    shopBtn.addEventListener('click', () => {
+        showPage('home');
+        const productsSection = document.getElementById('productsSection');
+        if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
-document.getElementById('hamburgerBtn')?.addEventListener('click', () => {
-    document.getElementById('navMenu').classList.toggle('active');
-});
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu) navMenu.classList.toggle('active');
+    });
+}
 
-document.getElementById('sendContactBtn')?.addEventListener('click', () => {
-    const name = document.getElementById('contactName').value;
-    const email = document.getElementById('contactEmail').value;
-    const msg = document.getElementById('contactMsg').value;
-    if (name && email && msg) {
-        showNotification('Pesan terkirim!', 'success');
-        document.getElementById('contactName').value = '';
-        document.getElementById('contactEmail').value = '';
-        document.getElementById('contactMsg').value = '';
-    } else {
-        showNotification('Harap isi semua field!', 'error');
-    }
-});
+const sendContactBtn = document.getElementById('sendContactBtn');
+if (sendContactBtn) {
+    sendContactBtn.addEventListener('click', () => {
+        const name = document.getElementById('contactName').value;
+        const email = document.getElementById('contactEmail').value;
+        const msg = document.getElementById('contactMsg').value;
+        if (name && email && msg) {
+            showNotification('Pesan terkirim!', 'success');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMsg').value = '';
+        } else {
+            showNotification('Harap isi semua field!', 'error');
+        }
+    });
+}
 
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(btn => {
+// Tabs for login/signup
+const tabBtns = document.querySelectorAll('.tab-btn');
+tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        tabBtns.forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(btn.dataset.tab + 'Tab').classList.add('active');
+        const tabId = btn.dataset.tab + 'Tab';
+        const tabContent = document.getElementById(tabId);
+        if (tabContent) tabContent.classList.add('active');
     });
 });
 
-document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+// Admin tabs
+const adminTabBtns = document.querySelectorAll('.admin-tab-btn');
+adminTabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.admin-tab-btn').forEach(t => t.classList.remove('active'));
+        adminTabBtns.forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(`admin${btn.dataset.adminTab.charAt(0).toUpperCase() + btn.dataset.adminTab.slice(1)}Tab`).classList.add('active');
+        const tabId = `admin${btn.dataset.adminTab.charAt(0).toUpperCase() + btn.dataset.adminTab.slice(1)}Tab`;
+        const tabContent = document.getElementById(tabId);
+        if (tabContent) tabContent.classList.add('active');
     });
 });
 
-// Click outside
+// Click outside to close dropdown
 window.addEventListener('click', (e) => {
-    if (!e.target.closest('#userBtn') && !e.target.closest('#userDropdown')) {
-        document.getElementById('userDropdown')?.classList.remove('active');
+    const userBtn = document.getElementById('userBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    if (userBtn && userDropdown && !userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.remove('active');
     }
     if (e.target.classList.contains('modal')) {
         e.target.classList.remove('active');
@@ -519,13 +606,15 @@ window.addEventListener('click', (e) => {
 
 // ==================== INIT ====================
 window.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded, initializing...");
     initDatabase();
     renderProducts();
     
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
         currentUser = JSON.parse(savedUser);
-        document.getElementById('dropdownUserName').innerText = currentUser.name || currentUser.email;
+        const userNameSpan = document.getElementById('dropdownUserName');
+        if (userNameSpan) userNameSpan.innerText = currentUser.name || currentUser.email;
         const savedCart = localStorage.getItem(`cart_${currentUser.id}`);
         if (savedCart) {
             cart = JSON.parse(savedCart);
