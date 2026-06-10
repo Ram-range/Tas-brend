@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Daniel's Luxury Boutique | Tas Mewah Premium</title>
+    <title>Luxury Bags - Tas Mewah Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,7 @@
         <div class="crown"><i class="fas fa-crown"></i></div>
         <h2>LUXURY BAGS</h2>
         <div class="spinner"></div>
-        <p class="loading-text">Loading Database...</p>
+        <p class="loading-text">Loading...</p>
     </div>
 </div>
 
@@ -106,7 +106,7 @@
         <div class="cart-summary">
             <p>Total Barang: <span id="cartTotalItems">0</span> pcs</p>
             <p>Total Harga: <span id="cartTotalPrice">Rp 0</span></p>
-            <div class="address-section" id="addressSection">
+            <div class="address-section">
                 <label><i class="fas fa-map-marker-alt"></i> Alamat Pengiriman:</label>
                 <textarea id="orderAddress" rows="2" placeholder="Masukkan alamat lengkap Anda..."></textarea>
             </div>
@@ -131,7 +131,7 @@
     </div>
 </div>
 
-<!-- SETTINGS MODAL (DENGAN DATABASE MANAGEMENT) -->
+<!-- SETTINGS MODAL -->
 <div class="modal" id="settingsModal">
     <div class="modal-content">
         <button class="modal-close" id="closeSettingsModal">&times;</button>
@@ -140,34 +140,6 @@
             <span><i class="fas fa-palette"></i> Mode Gelap/Terang</span>
             <button class="settings-btn" id="settingsDarkBtn">Toggle</button>
         </div>
-        
-        <div class="settings-divider"></div>
-        
-        <h3 style="margin: 15px 0 10px 0; font-size: 1rem;"><i class="fas fa-database"></i> Manajemen Database</h3>
-        
-        <div class="settings-item">
-            <span><i class="fas fa-download"></i> Backup / Export Data</span>
-            <button class="settings-btn" id="exportDataBtn">Export JSON</button>
-        </div>
-        
-        <div class="settings-item">
-            <span><i class="fas fa-upload"></i> Restore / Import Data</span>
-            <label class="settings-btn file-label" id="importLabel">
-                <i class="fas fa-folder-open"></i> Pilih File
-                <input type="file" id="importFileInput" accept=".json" style="display:none;">
-            </label>
-        </div>
-        
-        <div class="settings-item">
-            <span><i class="fas fa-trash-alt"></i> Reset Semua Data</span>
-            <button class="settings-btn danger-btn" id="resetDataBtn">Reset Database</button>
-        </div>
-        
-        <div class="settings-item">
-            <span><i class="fas fa-chart-simple"></i> Statistik Database</span>
-            <span id="dbStats" style="font-size:0.8rem; color:var(--gold);">-</span>
-        </div>
-        
         <button class="modal-btn secondary" id="closeSettingsBtn">Tutup</button>
     </div>
 </div>
@@ -211,6 +183,7 @@
 
 <!-- MAIN CONTENT -->
 <main>
+    <!-- HOME SECTION -->
     <section id="home" class="page-section active">
         <div class="hero">
             <div class="container">
@@ -234,6 +207,7 @@
         </div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="page-section">
         <div class="container">
             <div class="about-wrapper">
@@ -254,6 +228,7 @@
         </div>
     </section>
 
+    <!-- SKILLS SECTION -->
     <section id="skills" class="page-section">
         <div class="container">
             <div class="section-title">
@@ -269,6 +244,7 @@
         </div>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="page-section">
         <div class="container">
             <div class="section-title">
@@ -284,6 +260,7 @@
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" class="page-section">
         <div class="container">
             <div class="section-title">
