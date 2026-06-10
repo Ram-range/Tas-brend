@@ -6,7 +6,6 @@
 
 :root {
     --gold: #D4AF37;
-    --gold-light: #F3E5AB;
     --gold-dark: #B8960F;
     --dark: #1A1A2E;
     --dark-bg: #0F0F1A;
@@ -15,7 +14,6 @@
     --gray: #6C757D;
     --danger: #DC3545;
     --success: #28A745;
-    --warning: #FFC107;
 }
 
 body {
@@ -94,13 +92,13 @@ body.dark {
     50% { transform: translateY(-10px); }
 }
 
-/* NOTIFICATION */
+/* NOTIFICATION TOAST */
 .notification-toast {
     position: fixed;
     bottom: 30px;
     right: 30px;
     background: var(--dark);
-    color: var(--white);
+    color: white;
     padding: 12px 20px;
     border-radius: 50px;
     font-weight: 500;
@@ -129,7 +127,7 @@ body.dark {
 }
 
 .notification-toast.warning {
-    background: var(--warning);
+    background: #FFC107;
     color: var(--dark);
 }
 
@@ -454,57 +452,6 @@ body.dark .modal-input {
     color: var(--gray);
     text-align: center;
     margin-top: 12px;
-}
-
-/* SETTINGS - DATABASE MANAGEMENT */
-.settings-divider {
-    height: 1px;
-    background: #eee;
-    margin: 15px 0;
-}
-
-body.dark .settings-divider {
-    background: #444;
-}
-
-.settings-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-body.dark .settings-item {
-    border-bottom-color: #333;
-}
-
-.settings-btn {
-    background: var(--gold);
-    border: none;
-    padding: 6px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: 0.2s;
-}
-
-.settings-btn:hover {
-    background: var(--gold-dark);
-}
-
-.file-label {
-    cursor: pointer;
-    display: inline-block;
-}
-
-.danger-btn {
-    background: var(--danger);
-    color: white;
-}
-
-.danger-btn:hover {
-    background: #c82333;
 }
 
 /* HERO */
@@ -1029,6 +976,23 @@ body.dark .order-address {
 
 body.dark .profile-detail p {
     background: #2E2E3E;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.settings-btn {
+    background: var(--gold);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
 }
 
 /* FOOTER */
