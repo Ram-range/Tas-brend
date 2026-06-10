@@ -1,22 +1,22 @@
 // ==================== DATA PRODUK ====================
 const products = [
-    { id: 1, name: "Hermès Birkin 30", brand: "HERMÈS", price: 325000000, desc: "Tas tangan mewah ikonik, kulit Togo premium", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=280&fit=crop" },
-    { id: 2, name: "Chanel Classic Flap", brand: "CHANEL", price: 185000000, desc: "Classic Flap dengan quilted leather dan chain strap emas", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=280&fit=crop" },
-    { id: 3, name: "Louis Vuitton Neverfull", brand: "LOUIS VUITTON", price: 28500000, desc: "Tas tote spacious dengan canvas monogram iconic", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
-    { id: 4, name: "Gucci Dionysus", brand: "GUCCI", price: 32500000, desc: "Tas dengan closure tiger head signature, sangat elegan", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
-    { id: 5, name: "Prada Saffiano", brand: "PRADA", price: 22800000, desc: "Tas kulit saffiano elegan dengan hardware gold", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
-    { id: 6, name: "Dior Lady Dior", brand: "DIOR", price: 125000000, desc: "Tas ikonik dengan quilting cannage dan charm DIOR", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
-    { id: 7, name: "YSL Cassandra", brand: "SAINT LAURENT", price: 32500000, desc: "Tas flap dengan logo YSL besar yang statement", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
-    { id: 8, name: "Fendi Baguette", brand: "FENDI", price: 42500000, desc: "Tas Baguette klasik dengan FF logo iconic", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
-    { id: 9, name: "Celine Triomphe", brand: "CELINE", price: 48500000, desc: "Tas dengan logo Triomphe yang chic dan minimalis", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" },
-    { id: 10, name: "Bottega Cassette", brand: "BOTTEGA VENETA", price: 52000000, desc: "Tas anyaman leather signature BV, sangat stylish", image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400&h=280&fit=crop" },
-    { id: 11, name: "Loewe Puzzle", brand: "LOEWE", price: 39800000, desc: "Tas dengan desain puzzle unik dan geometris", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
-    { id: 12, name: "Goyard St. Louis", brand: "GOYARD", price: 28500000, desc: "Tas tote mewah dengan motif Chevron hand-painted", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
-    { id: 13, name: "Miu Miu Wander", brand: "MIU MIU", price: 22900000, desc: "Tas dengan desain playful namun tetap elegant", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
-    { id: 14, name: "Balenciaga City", brand: "BALENCIAGA", price: 27500000, desc: "Tas motor edgy iconic dengan studs", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
-    { id: 15, name: "Givenchy Antigona", brand: "GIVENCHY", price: 35800000, desc: "Tas structured dengan silhouette tegas dan mewah", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
-    { id: 16, name: "Coach Tabby", brand: "COACH", price: 5500000, desc: "Tas flap dengan desain modern dan vintage vibe", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
-    { id: 17, name: "Michael Kors Jet Set", brand: "MICHAEL KORS", price: 4250000, desc: "Tas tote casual mewah untuk sehari-hari", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" }
+    { id: 1, name: "Hermès Birkin 30", brand: "HERMÈS", price: 325000000, desc: "Tas tangan mewah ikonik", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=280&fit=crop" },
+    { id: 2, name: "Chanel Classic Flap", brand: "CHANEL", price: 185000000, desc: "Classic Flap quilted leather", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=280&fit=crop" },
+    { id: 3, name: "Louis Vuitton Neverfull", brand: "LOUIS VUITTON", price: 28500000, desc: "Tas tote spacious", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
+    { id: 4, name: "Gucci Dionysus", brand: "GUCCI", price: 32500000, desc: "Closure tiger head signature", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
+    { id: 5, name: "Prada Saffiano", brand: "PRADA", price: 22800000, desc: "Tas kulit saffiano elegan", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
+    { id: 6, name: "Dior Lady Dior", brand: "DIOR", price: 125000000, desc: "Tas ikonik quilting", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
+    { id: 7, name: "YSL Cassandra", brand: "SAINT LAURENT", price: 32500000, desc: "Tas flap logo YSL", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
+    { id: 8, name: "Fendi Baguette", brand: "FENDI", price: 42500000, desc: "Tas Baguette klasik", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
+    { id: 9, name: "Celine Triomphe", brand: "CELINE", price: 48500000, desc: "Logo Triomphe chic", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" },
+    { id: 10, name: "Bottega Cassette", brand: "BOTTEGA VENETA", price: 52000000, desc: "Tas anyaman leather", image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400&h=280&fit=crop" },
+    { id: 11, name: "Loewe Puzzle", brand: "LOEWE", price: 39800000, desc: "Desain puzzle unik", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
+    { id: 12, name: "Goyard St. Louis", brand: "GOYARD", price: 28500000, desc: "Motif Chevron", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
+    { id: 13, name: "Miu Miu Wander", brand: "MIU MIU", price: 22900000, desc: "Playful elegant", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
+    { id: 14, name: "Balenciaga City", brand: "BALENCIAGA", price: 27500000, desc: "Tas motor edgy", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
+    { id: 15, name: "Givenchy Antigona", brand: "GIVENCHY", price: 35800000, desc: "Structured silhouette", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
+    { id: 16, name: "Coach Tabby", brand: "COACH", price: 5500000, desc: "Tas flap modern", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
+    { id: 17, name: "Michael Kors Jet Set", brand: "MICHAEL KORS", price: 4250000, desc: "Tas tote casual", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" }
 ];
 
 // ==================== DEFAULT USERS ====================
@@ -48,7 +48,14 @@ function saveUsers(users) {
 
 // ==================== NOTIFICATION ====================
 function showNotification(message, type = 'success') {
-    const toast = document.getElementById('notificationToast');
+    let toast = document.getElementById('notificationToast');
+    if (!toast) {
+        const div = document.createElement('div');
+        div.id = 'notificationToast';
+        div.className = 'notification-toast';
+        document.body.appendChild(div);
+        toast = div;
+    }
     let icon = type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️';
     toast.innerHTML = `${icon} ${message}`;
     toast.className = `notification-toast ${type} show`;
@@ -105,7 +112,6 @@ function addToCart(id) {
     showNotification(`${product.name} ditambahkan!`, 'success');
 }
 
-// ==================== CART FUNCTIONS ====================
 function updateCartBadge() {
     const total = cart.reduce((sum, item) => sum + item.quantity, 0);
     const badge = document.getElementById('cartBadge');
@@ -153,11 +159,13 @@ function renderCart() {
 
 // ==================== AUTHENTICATION ====================
 function openAuthModal() {
-    document.getElementById('authModal').classList.add('active');
+    const modal = document.getElementById('authModal');
+    if (modal) modal.classList.add('active');
 }
 
 function closeAuthModal() {
-    document.getElementById('authModal').classList.remove('active');
+    const modal = document.getElementById('authModal');
+    if (modal) modal.classList.remove('active');
 }
 
 // LOGIN
@@ -178,7 +186,8 @@ if (loginBtn) {
         if (user) {
             currentUser = user;
             localStorage.setItem('currentUser', JSON.stringify(user));
-            document.getElementById('dropdownUserName').innerText = user.name;
+            const userNameSpan = document.getElementById('dropdownUserName');
+            if (userNameSpan) userNameSpan.innerText = user.name;
             
             const savedCart = localStorage.getItem(`cart_${user.id}`);
             cart = savedCart ? JSON.parse(savedCart) : [];
@@ -229,7 +238,8 @@ if (signupBtn) {
         
         currentUser = newUser;
         localStorage.setItem('currentUser', JSON.stringify(newUser));
-        document.getElementById('dropdownUserName').innerText = name;
+        const userNameSpan = document.getElementById('dropdownUserName');
+        if (userNameSpan) userNameSpan.innerText = name;
         cart = [];
         
         closeAuthModal();
@@ -245,8 +255,10 @@ if (logoutBtn) {
         currentUser = null;
         localStorage.removeItem('currentUser');
         cart = [];
-        document.getElementById('dropdownUserName').innerText = 'Guest';
-        document.getElementById('userDropdown').classList.remove('active');
+        const userNameSpan = document.getElementById('dropdownUserName');
+        if (userNameSpan) userNameSpan.innerText = 'Guest';
+        const dropdown = document.getElementById('userDropdown');
+        if (dropdown) dropdown.classList.remove('active');
         showNotification('Anda telah logout', 'warning');
         location.reload();
     });
@@ -297,26 +309,40 @@ if (checkoutBtn) {
         updateCartBadge();
         renderCart();
         document.getElementById('orderAddress').value = '';
-        document.getElementById('cartModal').classList.remove('active');
+        const cartModal = document.getElementById('cartModal');
+        if (cartModal) cartModal.classList.remove('active');
     });
 }
 
-// ==================== ADMIN PANEL (FIXED - PASTI BISA DI KLIK) ====================
+// ==================== ADMIN PANEL (FIXED - MODAL PASTI MUNCUL) ====================
 function openAdminPanel() {
-    console.log("openAdminPanel dipanggil"); // Debug
+    console.log("openAdminPanel dipanggil");
+    
+    // Cek apakah user sudah login
     if (!currentUser) {
         showNotification('Silakan login terlebih dahulu!', 'warning');
         openAuthModal();
         return;
     }
     
+    // Cek apakah user adalah admin
     if (currentUser.role !== 'admin' && currentUser.email !== 'admin@daniel.com') {
         showNotification('🔐 Akses Admin khusus administrator! Login dengan admin@daniel.com / admin123', 'error');
         return;
     }
     
+    // Update data dashboard
     updateAdminDashboard();
-    document.getElementById('adminModal').classList.add('active');
+    
+    // Tampilkan modal admin
+    const adminModal = document.getElementById('adminModal');
+    if (adminModal) {
+        console.log("Menampilkan admin modal");
+        adminModal.classList.add('active');
+    } else {
+        console.error("Element adminModal tidak ditemukan!");
+        showNotification('Error: Modal admin tidak ditemukan!', 'error');
+    }
 }
 
 function updateAdminDashboard() {
@@ -412,7 +438,8 @@ if (userBtn) {
         if (!currentUser) {
             openAuthModal();
         } else {
-            document.getElementById('userDropdown').classList.toggle('active');
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown) dropdown.classList.toggle('active');
         }
     });
 }
@@ -427,7 +454,8 @@ if (cartBtn) {
             return;
         }
         renderCart();
-        document.getElementById('cartModal').classList.add('active');
+        const cartModal = document.getElementById('cartModal');
+        if (cartModal) cartModal.classList.add('active');
     });
 }
 
@@ -437,16 +465,23 @@ if (profileMenuBtn) {
     profileMenuBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (currentUser) {
-            document.getElementById('profileName').innerText = currentUser.name;
-            document.getElementById('profileEmail').innerText = currentUser.email;
-            document.getElementById('profileAddress').innerText = currentUser.address || 'Belum diisi';
-            document.getElementById('profileRole').innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
-            document.getElementById('profileSince').innerText = currentUser.joined || '2026';
-            document.getElementById('profileModal').classList.add('active');
+            const profileName = document.getElementById('profileName');
+            const profileEmail = document.getElementById('profileEmail');
+            const profileAddress = document.getElementById('profileAddress');
+            const profileRole = document.getElementById('profileRole');
+            const profileSince = document.getElementById('profileSince');
+            if (profileName) profileName.innerText = currentUser.name;
+            if (profileEmail) profileEmail.innerText = currentUser.email;
+            if (profileAddress) profileAddress.innerText = currentUser.address || 'Belum diisi';
+            if (profileRole) profileRole.innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
+            if (profileSince) profileSince.innerText = currentUser.joined || '2026';
+            const profileModal = document.getElementById('profileModal');
+            if (profileModal) profileModal.classList.add('active');
         } else {
             openAuthModal();
         }
-        document.getElementById('userDropdown').classList.remove('active');
+        const dropdown = document.getElementById('userDropdown');
+        if (dropdown) dropdown.classList.remove('active');
     });
 }
 
@@ -455,23 +490,26 @@ const settingsMenuBtn = document.getElementById('settingsMenuBtn');
 if (settingsMenuBtn) {
     settingsMenuBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        document.getElementById('settingsModal').classList.add('active');
-        document.getElementById('userDropdown').classList.remove('active');
+        const settingsModal = document.getElementById('settingsModal');
+        if (settingsModal) settingsModal.classList.add('active');
+        const dropdown = document.getElementById('userDropdown');
+        if (dropdown) dropdown.classList.remove('active');
     });
 }
 
-// ADMIN PANEL BUTTON - YANG INI PENTING!
+// ADMIN PANEL BUTTON - YANG PALING PENTING!
 const adminMenuBtn = document.getElementById('adminMenuBtn');
 if (adminMenuBtn) {
     console.log("Admin menu button ditemukan");
     adminMenuBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("Admin menu button diklik!");
+        console.log("Admin menu button diklik! Membuka admin panel...");
         openAdminPanel();
-        document.getElementById('userDropdown').classList.remove('active');
+        const dropdown = document.getElementById('userDropdown');
+        if (dropdown) dropdown.classList.remove('active');
     });
 } else {
-    console.log("Admin menu button TIDAK ditemukan!");
+    console.error("Admin menu button TIDAK ditemukan di DOM!");
 }
 
 // Dark mode
@@ -479,7 +517,7 @@ const darkModeBtn = document.getElementById('darkModeBtn');
 if (darkModeBtn) {
     darkModeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        const icon = document.querySelector('#darkModeBtn i');
+        const icon = darkModeBtn.querySelector('i');
         if (icon) {
             icon.classList.toggle('fa-moon');
             icon.classList.toggle('fa-sun');
@@ -594,10 +632,10 @@ adminTabBtns.forEach(btn => {
 
 // Click outside to close dropdown
 window.addEventListener('click', (e) => {
-    const userBtn = document.getElementById('userBtn');
-    const userDropdown = document.getElementById('userDropdown');
-    if (userBtn && userDropdown && !userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
-        userDropdown.classList.remove('active');
+    const userBtnEl = document.getElementById('userBtn');
+    const userDropdownEl = document.getElementById('userDropdown');
+    if (userBtnEl && userDropdownEl && !userBtnEl.contains(e.target) && !userDropdownEl.contains(e.target)) {
+        userDropdownEl.classList.remove('active');
     }
     if (e.target.classList.contains('modal')) {
         e.target.classList.remove('active');
