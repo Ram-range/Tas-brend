@@ -19,16 +19,6 @@
       "address": "Surabaya, Indonesia",
       "phone": "08123456788",
       "joined": "2026-06-01"
-    },
-    {
-      "id": 3,
-      "name": "Siti Rahayu",
-      "email": "siti@email.com",
-      "password": "siti123",
-      "role": "user",
-      "address": "Bandung, Indonesia",
-      "phone": "08123456787",
-      "joined": "2026-06-05"
     }
   ],
   "orders": [
