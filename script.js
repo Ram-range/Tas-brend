@@ -1,22 +1,22 @@
-// ==================== DATA PRODUK (15+ TAS FAMOUS) ====================
+// ==================== DATA PRODUK 17 TAS MEWAH DENGAN FOTO ====================
 const products = [
-    { id: 1, name: "Hermès Birkin 30", brand: "Hermès", price: 325000000, desc: "Tas tangan mewah ikonik dari Hermès, kulit Togo premium, sangat eksklusif" },
-    { id: 2, name: "Chanel Classic Flap", brand: "Chanel", price: 185000000, desc: "Classic Flap bag dengan quilted leather dan chain strap emas" },
-    { id: 3, name: "Louis Vuitton Neverfull", brand: "Louis Vuitton", price: 28500000, desc: "Tas tote spacious dengan canvas monogram iconic LV" },
-    { id: 4, name: "Gucci Dionysus", brand: "Gucci", price: 32500000, desc: "Tas dengan closure tiger head signature, sangat elegan" },
-    { id: 5, name: "Prada Saffiano", brand: "Prada", price: 22800000, desc: "Tas kulit saffiano elegan dengan hardware gold" },
-    { id: 6, name: "Dior Lady Dior", brand: "Dior", price: 125000000, desc: "Tas ikonik dengan quilting cannage dan charm DIOR" },
-    { id: 7, name: "YSL Cassandra", brand: "Saint Laurent", price: 32500000, desc: "Tas flap dengan logo YSL besar yang statement" },
-    { id: 8, name: "Fendi Baguette", brand: "Fendi", price: 42500000, desc: "Tas Baguette klasik dengan FF logo iconic" },
-    { id: 9, name: "Celine Triomphe", brand: "Celine", price: 48500000, desc: "Tas dengan logo Triomphe yang chic dan minimalis" },
-    { id: 10, name: "Bottega Cassette", brand: "Bottega Veneta", price: 52000000, desc: "Tas anyaman leather signature BV, sangat stylish" },
-    { id: 11, name: "Loewe Puzzle", brand: "Loewe", price: 39800000, desc: "Tas dengan desain puzzle unik dan geometris" },
-    { id: 12, name: "Goyard St. Louis", brand: "Goyard", price: 28500000, desc: "Tas tote mewah dengan motif Chevron hand-painted" },
-    { id: 13, name: "Miu Miu Wander", brand: "Miu Miu", price: 22900000, desc: "Tas dengan desain playful namun tetap elegant" },
-    { id: 14, name: "Balenciaga City", brand: "Balenciaga", price: 27500000, desc: "Tas motor edgy iconic dengan studs" },
-    { id: 15, name: "Givenchy Antigona", brand: "Givenchy", price: 35800000, desc: "Tas structured dengan silhouette tegas dan mewah" },
-    { id: 16, name: "Coach Tabby", brand: "Coach", price: 5500000, desc: "Tas flap dengan desain modern dan vintage vibe" },
-    { id: 17, name: "Michael Kors Jet Set", brand: "Michael Kors", price: 4250000, desc: "Tas tote casual mewah untuk sehari-hari" }
+    { id: 1, name: "Hermès Birkin 30", brand: "HERMÈS", price: 325000000, desc: "Tas tangan mewah ikonik, kulit Togo premium, sangat eksklusif", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop" },
+    { id: 2, name: "Chanel Classic Flap", brand: "CHANEL", price: 185000000, desc: "Classic Flap bag dengan quilted leather dan chain strap emas", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=300&fit=crop" },
+    { id: 3, name: "Louis Vuitton Neverfull", brand: "LOUIS VUITTON", price: 28500000, desc: "Tas tote spacious dengan canvas monogram iconic", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop" },
+    { id: 4, name: "Gucci Dionysus", brand: "GUCCI", price: 32500000, desc: "Tas dengan closure tiger head signature, sangat elegan", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=300&fit=crop" },
+    { id: 5, name: "Prada Saffiano", brand: "PRADA", price: 22800000, desc: "Tas kulit saffiano elegan dengan hardware gold", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=300&fit=crop" },
+    { id: 6, name: "Dior Lady Dior", brand: "DIOR", price: 125000000, desc: "Tas ikonik dengan quilting cannage dan charm DIOR", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=300&fit=crop" },
+    { id: 7, name: "YSL Cassandra", brand: "SAINT LAURENT", price: 32500000, desc: "Tas flap dengan logo YSL besar yang statement", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=300&fit=crop" },
+    { id: 8, name: "Fendi Baguette", brand: "FENDI", price: 42500000, desc: "Tas Baguette klasik dengan FF logo iconic", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop" },
+    { id: 9, name: "Celine Triomphe", brand: "CELINE", price: 48500000, desc: "Tas dengan logo Triomphe yang chic dan minimalis", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=300&fit=crop" },
+    { id: 10, name: "Bottega Cassette", brand: "BOTTEGA VENETA", price: 52000000, desc: "Tas anyaman leather signature BV, sangat stylish", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop" },
+    { id: 11, name: "Loewe Puzzle", brand: "LOEWE", price: 39800000, desc: "Tas dengan desain puzzle unik dan geometris", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=300&fit=crop" },
+    { id: 12, name: "Goyard St. Louis", brand: "GOYARD", price: 28500000, desc: "Tas tote mewah dengan motif Chevron hand-painted", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop" },
+    { id: 13, name: "Miu Miu Wander", brand: "MIU MIU", price: 22900000, desc: "Tas dengan desain playful namun tetap elegant", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=300&fit=crop" },
+    { id: 14, name: "Balenciaga City", brand: "BALENCIAGA", price: 27500000, desc: "Tas motor edgy iconic dengan studs", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=300&fit=crop" },
+    { id: 15, name: "Givenchy Antigona", brand: "GIVENCHY", price: 35800000, desc: "Tas structured dengan silhouette tegas dan mewah", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=300&fit=crop" },
+    { id: 16, name: "Coach Tabby", brand: "COACH", price: 5500000, desc: "Tas flap dengan desain modern dan vintage vibe", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop" },
+    { id: 17, name: "Michael Kors Jet Set", brand: "MICHAEL KORS", price: 4250000, desc: "Tas tote casual mewah untuk sehari-hari", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop" }
 ];
 
 // ==================== GLOBAL STATE ====================
@@ -25,16 +25,32 @@ let cart = [];
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let chartInstance = null;
 
-// LOADING ANIMATION
+// ==================== NOTIFICATION FUNCTION ====================
+function showNotification(message, type = 'success') {
+    const toast = document.getElementById('notificationToast');
+    let icon = '';
+    if (type === 'success') icon = '<i class="fas fa-check-circle"></i>';
+    if (type === 'error') icon = '<i class="fas fa-times-circle"></i>';
+    if (type === 'warning') icon = '<i class="fas fa-exclamation-triangle"></i>';
+    
+    toast.innerHTML = `${icon} ${message}`;
+    toast.className = `notification-toast ${type} show`;
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ==================== LOADING SCREEN ====================
 window.addEventListener('load', () => {
     setTimeout(() => {
-        const loader = document.getElementById('loadingOverlay');
+        const loader = document.getElementById('loadingScreen');
         loader.classList.add('hide');
         setTimeout(() => loader.style.display = 'none', 500);
     }, 1500);
 });
 
-// Load saved data
+// ==================== LOAD SAVED DATA ====================
 const savedUser = localStorage.getItem('currentUser');
 if (savedUser) {
     currentUser = JSON.parse(savedUser);
@@ -52,18 +68,20 @@ function renderProducts() {
     if (!grid) return;
     grid.innerHTML = products.map(p => `
         <div class="product-card">
-            <div class="product-img"><i class="fas fa-bag-shopping"></i></div>
+            <div class="product-image" style="background-image: url('${p.image}'); background-size: cover; background-position: center;">
+                <span class="product-badge">PREMIUM</span>
+            </div>
             <div class="product-info">
                 <h3>${p.name}</h3>
                 <p class="product-brand">${p.brand}</p>
-                <p class="product-desc">${p.desc.substring(0, 60)}...</p>
+                <p class="product-desc">${p.desc.substring(0, 50)}...</p>
                 <p class="product-price">Rp ${p.price.toLocaleString('id-ID')}</p>
-                <button class="add-cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>
+                <button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>
             </div>
         </div>
     `).join('');
     
-    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const id = parseInt(btn.dataset.id);
@@ -73,16 +91,22 @@ function renderProducts() {
 }
 
 function addToCart(id) {
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu!', 'warning');
+        openAuthModal();
+        return;
+    }
     const product = products.find(p => p.id === id);
     const existing = cart.find(item => item.id === id);
     if (existing) {
         existing.quantity++;
+        showNotification(`Jumlah ${product.name} ditambah!`, 'success');
     } else {
         cart.push({ ...product, quantity: 1 });
+        showNotification(`${product.name} ditambahkan ke keranjang!`, 'success');
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartBadge();
-    showNotification(`${product.name} ditambahkan ke keranjang!`, 'success');
 }
 
 function updateCartBadge() {
@@ -94,27 +118,27 @@ function renderCart() {
     const container = document.getElementById('cartList');
     if (!container) return;
     if (cart.length === 0) {
-        container.innerHTML = '<p style="text-align:center;padding:40px">Keranjang kosong</p>';
-        document.getElementById('cartTotal').innerText = 'Rp 0';
-        document.getElementById('cartItemCount').innerText = '0';
+        container.innerHTML = '<p style="text-align:center;padding:40px">✨ Keranjang masih kosong ✨</p>';
+        document.getElementById('cartTotalItems').innerText = '0';
+        document.getElementById('cartTotalPrice').innerText = 'Rp 0';
         return;
     }
     container.innerHTML = cart.map(item => `
         <div class="cart-item">
-            <div>
+            <div class="cart-item-info">
                 <h4>${item.name}</h4>
-                <p>Rp ${item.price.toLocaleString('id-ID')} x ${item.quantity}</p>
+                <p class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')} x ${item.quantity}</p>
             </div>
-            <button class="cancel-item-btn" data-id="${item.id}"><i class="fas fa-trash"></i> Batalkan</button>
+            <button class="cancel-btn" data-id="${item.id}"><i class="fas fa-trash"></i> Batalkan</button>
         </div>
     `).join('');
     
     const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
     const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-    document.getElementById('cartTotal').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-    document.getElementById('cartItemCount').innerText = totalItems;
+    document.getElementById('cartTotalItems').innerText = totalItems;
+    document.getElementById('cartTotalPrice').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
     
-    document.querySelectorAll('.cancel-item-btn').forEach(btn => {
+    document.querySelectorAll('.cancel-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = parseInt(btn.dataset.id);
             cancelOrder(id);
@@ -123,28 +147,12 @@ function renderCart() {
 }
 
 function cancelOrder(id) {
+    const product = cart.find(item => item.id === id);
     cart = cart.filter(item => item.id !== id);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartBadge();
     renderCart();
-    showNotification('Pesanan dibatalkan', 'info');
-}
-
-function showNotification(msg, type = 'info') {
-    const notif = document.createElement('div');
-    notif.innerText = msg;
-    notif.style.position = 'fixed';
-    notif.style.bottom = '20px';
-    notif.style.right = '20px';
-    notif.style.backgroundColor = type === 'success' ? '#28a745' : '#d4af37';
-    notif.style.color = '#0a0a0a';
-    notif.style.padding = '12px 24px';
-    notif.style.borderRadius = '40px';
-    notif.style.zIndex = '9999';
-    notif.style.fontWeight = '500';
-    notif.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-    document.body.appendChild(notif);
-    setTimeout(() => notif.remove(), 3000);
+    showNotification(`${product.name} dibatalkan dari keranjang`, 'warning');
 }
 
 // ==================== AUTHENTICATION ====================
@@ -154,19 +162,29 @@ function openAuthModal() {
 
 function closeAuthModal() {
     document.getElementById('authModal').classList.remove('active');
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+    document.getElementById('signupName').value = '';
+    document.getElementById('signupEmail').value = '';
+    document.getElementById('signupPassword').value = '';
 }
 
 document.getElementById('doLoginBtn')?.addEventListener('click', () => {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
     
-    // Admin login
-    if (email === 'admin@luxury.com' && password === 'admin123') {
-        currentUser = { email: 'admin@luxury.com', name: 'Administrator', role: 'admin' };
+    if (!email || !password) {
+        showNotification('Harap isi email dan password!', 'error');
+        return;
+    }
+    
+    // ADMIN LOGIN
+    if (email === 'admin@daniel.com' && password === 'admin123') {
+        currentUser = { email: 'admin@daniel.com', name: 'Administrator', role: 'admin' };
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         document.getElementById('dropdownUserName').innerText = 'Administrator';
         closeAuthModal();
-        showNotification('Selamat datang, Admin!', 'success');
+        showNotification('Selamat datang, Admin Daniel!', 'success');
         location.reload();
         return;
     }
@@ -177,10 +195,10 @@ document.getElementById('doLoginBtn')?.addEventListener('click', () => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         document.getElementById('dropdownUserName').innerText = user.name;
         closeAuthModal();
-        showNotification(`Selamat datang, ${user.name}!`, 'success');
+        showNotification(`Login berhasil! Selamat datang, ${user.name}!`, 'success');
         location.reload();
     } else {
-        showNotification('Email atau password salah!', 'error');
+        showNotification('Email atau password salah! Silakan coba lagi.', 'error');
     }
 });
 
@@ -189,19 +207,24 @@ document.getElementById('doSignupBtn')?.addEventListener('click', () => {
     const email = document.getElementById('signupEmail').value;
     const password = document.getElementById('signupPassword').value;
     
-    if (users.find(u => u.email === email)) {
-        showNotification('Email sudah terdaftar!', 'error');
+    if (!name || !email || !password) {
+        showNotification('Harap isi semua field!', 'error');
         return;
     }
     
-    const newUser = { name, email, password, role: 'user', joined: new Date().toLocaleDateString() };
+    if (users.find(u => u.email === email)) {
+        showNotification('Email sudah terdaftar! Silakan login.', 'error');
+        return;
+    }
+    
+    const newUser = { name, email, password, role: 'user', joined: new Date().toLocaleDateString('id-ID') };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
     currentUser = newUser;
     localStorage.setItem('currentUser', JSON.stringify(newUser));
     document.getElementById('dropdownUserName').innerText = name;
     closeAuthModal();
-    showNotification('Pendaftaran berhasil!', 'success');
+    showNotification(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
     location.reload();
 });
 
@@ -210,7 +233,7 @@ document.getElementById('logoutMenuBtn')?.addEventListener('click', () => {
     localStorage.removeItem('currentUser');
     document.getElementById('dropdownUserName').innerText = 'Guest';
     document.getElementById('userDropdown').classList.remove('active');
-    showNotification('Anda telah logout', 'info');
+    showNotification('Anda telah logout. Sampai jumpa kembali!', 'warning');
     location.reload();
 });
 
@@ -234,6 +257,7 @@ document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
         document.getElementById('profileName').innerText = currentUser.name || currentUser.email;
         document.getElementById('profileEmail').innerText = currentUser.email;
         document.getElementById('profileRole').innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
+        document.getElementById('profileSince').innerText = currentUser.joined || '2026';
         document.getElementById('profileModal').classList.add('active');
     } else {
         openAuthModal();
@@ -247,19 +271,23 @@ document.getElementById('settingsMenuBtn')?.addEventListener('click', (e) => {
     document.getElementById('userDropdown').classList.remove('active');
 });
 
+document.getElementById('settingsNotifBtn')?.addEventListener('click', () => {
+    showNotification('Notifikasi berhasil diaktifkan!', 'success');
+});
+
 document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    if (currentUser?.role === 'admin' || currentUser?.email === 'admin@luxury.com') {
+    if (currentUser?.role === 'admin' || currentUser?.email === 'admin@daniel.com') {
         updateAdminStats();
         document.getElementById('adminModal').classList.add('active');
     } else {
-        showNotification('Akses Admin hanya untuk administrator!', 'error');
+        showNotification('🔐 Akses Admin hanya untuk administrator! Login dengan admin@daniel.com / admin123', 'error');
     }
     document.getElementById('userDropdown').classList.remove('active');
 });
 
 function updateAdminStats() {
-    document.getElementById('statUsers').innerText = users.length + 1;
+    document.getElementById('statUsers').innerText = users.length;
     document.getElementById('statProducts').innerText = products.length;
     const orders = cart.length;
     document.getElementById('statOrders').innerText = orders;
@@ -273,15 +301,17 @@ function updateAdminStats() {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
-                datasets: [{ label: 'Penjualan (Rp Juta)', data: [85, 110, 135, 160, 190, 220], borderColor: '#d4af37', tension: 0.3 }]
-            }
+                datasets: [{ label: 'Penjualan (Rp Juta)', data: [85, 110, 135, 160, 190, 220], borderColor: '#D4AF37', tension: 0.3, fill: false, backgroundColor: 'rgba(212,175,55,0.1)' }]
+            },
+            options: { responsive: true, maintainAspectRatio: true }
         });
     }
 }
 
-// Close all modals
-document.querySelectorAll('.modal-close, #closeProfileBtn, #closeSettingsBtn, #closeAdminBtn, #closeCartModal').forEach(btn => {
-    btn?.addEventListener('click', () => {
+// Close modals
+const closeButtons = ['closeAuthModal', 'closeProfileModal', 'closeSettingsModal', 'closeAdminModal', 'closeCartModal', 'closeProfileBtn', 'closeSettingsBtn', 'closeAdminBtn'];
+closeButtons.forEach(id => {
+    document.getElementById(id)?.addEventListener('click', () => {
         document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
     });
 });
@@ -293,9 +323,11 @@ document.getElementById('darkModeBtn')?.addEventListener('click', () => {
     if (document.body.classList.contains('dark')) {
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
+        showNotification('Mode Gelap diaktifkan', 'success');
     } else {
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
+        showNotification('Mode Terang diaktifkan', 'success');
     }
 });
 
@@ -311,7 +343,7 @@ document.getElementById('settingsDarkBtn')?.addEventListener('click', () => {
     }
 });
 
-// ==================== NAVIGATION PAGE ====================
+// ==================== NAVIGASI PAGE ====================
 function showPage(pageId) {
     document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
@@ -333,6 +365,7 @@ document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
         e.preventDefault();
         const page = link.getAttribute('data-page');
         if (page) showPage(page);
+        document.getElementById('navMenu')?.classList.remove('active');
     });
 });
 
@@ -343,10 +376,10 @@ document.getElementById('shopBtn')?.addEventListener('click', () => {
 
 document.getElementById('checkoutBtn')?.addEventListener('click', () => {
     if (cart.length === 0) {
-        showNotification('Keranjang kosong!', 'error');
+        showNotification('Keranjang masih kosong!', 'warning');
         return;
     }
-    showNotification('Terima kasih! Pesanan Anda sedang diproses.', 'success');
+    showNotification('🎉 Terima kasih! Pesanan Anda sedang diproses.', 'success');
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartBadge();
@@ -354,12 +387,12 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
     document.getElementById('cartModal').classList.remove('active');
 });
 
-// ==================== HAMBURGER MENU (3 GARIS) ====================
+// ==================== HAMBURGER MENU ====================
 document.getElementById('hamburgerBtn')?.addEventListener('click', () => {
     document.getElementById('navMenu').classList.toggle('active');
 });
 
-// Close dropdown when clicking outside
+// Close dropdown/modal klik di luar
 window.addEventListener('click', (e) => {
     if (!e.target.closest('#userBtn') && !e.target.closest('#userDropdown')) {
         document.getElementById('userDropdown')?.classList.remove('active');
@@ -367,21 +400,6 @@ window.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal')) {
         e.target.classList.remove('active');
     }
-});
-
-// ==================== INIT ====================
-renderProducts();
-showPage('home');
-updateCartBadge();
-
-// Auth tabs
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab + 'Tab').classList.add('active');
-    });
 });
 
 // Contact form
@@ -398,3 +416,18 @@ document.getElementById('sendContactBtn')?.addEventListener('click', () => {
         showNotification('Harap isi semua field!', 'error');
     }
 });
+
+// Auth tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab + 'Tab').classList.add('active');
+    });
+});
+
+// ==================== INIT ====================
+renderProducts();
+showPage('home');
+updateCartBadge();
