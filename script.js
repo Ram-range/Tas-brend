@@ -9,7 +9,7 @@ let database = {
 let currentUser = null;
 let cart = [];
 
-// ==================== LOAD DATABASE FROM JSON FILE ====================
+// ==================== LOAD DATABASE ====================
 async function loadDatabase() {
     try {
         const response = await fetch('database.json');
@@ -17,24 +17,21 @@ async function loadDatabase() {
             throw new Error('Gagal load database.json');
         }
         database = await response.json();
-        console.log('Database loaded:', database);
+        console.log('✅ Database loaded:', database);
         
-        // Inisialisasi localStorage dari database jika belum ada
+        // Inisialisasi localStorage dari database
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify(database.users));
-        }
-        if (!localStorage.getItem('products_backup')) {
-            localStorage.setItem('products_backup', JSON.stringify(database.products));
         }
         
         renderProductsFromDB();
     } catch (error) {
         console.error('Error loading database:', error);
-        showNotification('Gagal load database! Pastikan file database.json ada.', 'error');
+        document.getElementById('productsGrid').innerHTML = '<p style="text-align:center;padding:40px;">❌ Gagal load database.json! Pastikan file ada.</p>';
     }
 }
 
-// ==================== RENDER PRODUCTS FROM DATABASE ====================
+// ==================== RENDER PRODUCTS ====================
 function renderProductsFromDB() {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
@@ -56,7 +53,6 @@ function renderProductsFromDB() {
                 <p class="product-brand">${p.brand}</p>
                 <p class="product-desc">${p.desc.substring(0, 45)}...</p>
                 <p class="product-price">Rp ${p.price.toLocaleString('id-ID')}</p>
-                <p class="product-stock" style="font-size:0.7rem; color:var(--gray);">Stok: ${p.stock} pcs</p>
                 <button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button>
             </div>
         </div>
@@ -65,8 +61,7 @@ function renderProductsFromDB() {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const id = parseInt(btn.dataset.id);
-            addToCart(id);
+            addToCart(parseInt(btn.dataset.id));
         });
     });
 }
@@ -81,18 +76,8 @@ function addToCart(id) {
     const product = database.products.find(p => p.id === id);
     if (!product) return;
     
-    // Cek stok
-    if (product.stok <= 0) {
-        showNotification('Maaf, stok produk ini habis!', 'error');
-        return;
-    }
-    
     const existing = cart.find(item => item.id === id);
     if (existing) {
-        if (existing.quantity >= product.stok) {
-            showNotification('Stok tidak mencukupi!', 'error');
-            return;
-        }
         existing.quantity++;
     } else {
         cart.push({ ...product, quantity: 1 });
@@ -103,198 +88,7 @@ function addToCart(id) {
     showNotification(`${product.name} ditambahkan!`, 'success');
 }
 
-// ==================== LOAD USERS FROM DATABASE ====================
-function loadUsersFromDB() {
-    const savedUsers = localStorage.getItem('users');
-    if (!savedUsers || JSON.parse(savedUsers).length === 0) {
-        localStorage.setItem('users', JSON.stringify(database.users));
-    }
-    return JSON.parse(localStorage.getItem('users'));
-}
-
-// ==================== AUTHENTICATION ====================
-function authenticateUser(email, password) {
-    const users = loadUsersFromDB();
-    return users.find(u => u.email === email && u.password === password);
-}
-
-document.getElementById('doLoginBtn')?.addEventListener('click', () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    if (!email || !password) {
-        showNotification('Harap isi email dan password!', 'error');
-        return;
-    }
-    
-    const user = authenticateUser(email, password);
-    
-    if (user) {
-        currentUser = user;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        document.getElementById('dropdownUserName').innerText = user.name;
-        
-        const savedCart = localStorage.getItem(`cart_${user.id}`);
-        cart = savedCart ? JSON.parse(savedCart) : [];
-        updateCartBadge();
-        
-        document.getElementById('authModal').classList.remove('active');
-        showNotification(`Login berhasil! Selamat datang, ${user.name}!`, 'success');
-        location.reload();
-    } else {
-        showNotification('Email atau password salah!', 'error');
-    }
-});
-
-document.getElementById('doSignupBtn')?.addEventListener('click', () => {
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    const address = document.getElementById('signupAddress').value;
-    
-    if (!name || !email || !password || !address) {
-        showNotification('Harap isi semua field!', 'error');
-        return;
-    }
-    
-    let users = loadUsersFromDB();
-    
-    if (users.find(u => u.email === email)) {
-        showNotification('Email sudah terdaftar!', 'error');
-        return;
-    }
-    
-    const newUser = { 
-        id: users.length + 1,
-        name, 
-        email, 
-        password, 
-        address,
-        role: 'user', 
-        joined: new Date().toLocaleDateString('id-ID') 
-    };
-    
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    
-    currentUser = newUser;
-    localStorage.setItem('currentUser', JSON.stringify(newUser));
-    document.getElementById('dropdownUserName').innerText = name;
-    cart = [];
-    
-    document.getElementById('authModal').classList.remove('active');
-    showNotification(`Pendaftaran berhasil!`, 'success');
-    location.reload();
-});
-
-// ==================== CHECKOUT ====================
-document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-    if (cart.length === 0) {
-        showNotification('Keranjang kosong!', 'warning');
-        return;
-    }
-    
-    const address = document.getElementById('orderAddress').value;
-    if (!address) {
-        showNotification('Harap isi alamat pengiriman!', 'error');
-        return;
-    }
-    
-    // Load existing orders
-    let existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-    
-    const newOrder = {
-        id: existingOrders.length + 1,
-        userId: currentUser.id,
-        userName: currentUser.name,
-        userEmail: currentUser.email,
-        userAddress: address,
-        items: cart.map(item => ({
-            id: item.id,
-            name: item.name,
-            brand: item.brand,
-            price: item.price,
-            quantity: item.quantity
-        })),
-        total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
-        date: new Date().toLocaleString('id-ID'),
-        status: 'pending'
-    };
-    
-    existingOrders.push(newOrder);
-    localStorage.setItem('orders', JSON.stringify(existingOrders));
-    
-    showNotification('🎉 Pesanan berhasil!', 'success');
-    
-    cart = [];
-    localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
-    updateCartBadge();
-    renderCart();
-    document.getElementById('orderAddress').value = '';
-    document.getElementById('cartModal').classList.remove('active');
-});
-
-// ==================== ADMIN PANEL ====================
-function updateAdminDashboard() {
-    const usersData = JSON.parse(localStorage.getItem('users') || '[]');
-    const ordersData = JSON.parse(localStorage.getItem('orders') || '[]');
-    
-    document.getElementById('statUsers').innerText = usersData.length;
-    document.getElementById('statProducts').innerText = database.products?.length || 0;
-    document.getElementById('statOrders').innerText = ordersData.length;
-    const totalRevenue = ordersData.reduce((sum, order) => sum + order.total, 0);
-    document.getElementById('statRevenue').innerText = totalRevenue.toLocaleString('id-ID');
-    
-    // Orders list
-    const ordersContainer = document.getElementById('ordersList');
-    if (ordersContainer) {
-        if (ordersData.length === 0) {
-            ordersContainer.innerHTML = '<p style="text-align:center;padding:30px;">Belum ada pesanan</p>';
-        } else {
-            ordersContainer.innerHTML = ordersData.map(order => `
-                <div class="order-card">
-                    <div class="order-header">
-                        <span class="order-id">#ORDER-${order.id}</span>
-                        <span class="order-date">${order.date}</span>
-                    </div>
-                    <div class="order-customer">
-                        <strong>${order.userName}</strong> (${order.userEmail})
-                    </div>
-                    <div class="order-address">
-                        <i class="fas fa-map-marker-alt"></i> ${order.userAddress}
-                    </div>
-                    <div class="order-items">
-                        <strong>Pesanan:</strong>
-                        <ul style="margin-left:20px;">
-                            ${order.items.map(item => `<li>${item.name} x ${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="order-total">
-                        Total: Rp ${order.total.toLocaleString('id-ID')}
-                    </div>
-                </div>
-            `).join('');
-        }
-    }
-    
-    // Users list (tanpa password)
-    const usersContainer = document.getElementById('usersList');
-    if (usersContainer) {
-        usersContainer.innerHTML = usersData.map(user => `
-            <div class="user-card">
-                <div class="user-info">
-                    <h4>${user.name}</h4>
-                    <p><i class="fas fa-envelope"></i> ${user.email}</p>
-                    <p><i class="fas fa-map-marker-alt"></i> ${user.address || 'Belum diisi'}</p>
-                    <p><i class="far fa-calendar"></i> Bergabung: ${user.joined}</p>
-                </div>
-                <div class="user-role">${user.role === 'admin' ? 'Admin' : 'User'}</div>
-            </div>
-        `).join('');
-    }
-}
-
-// ==================== UTILITY FUNCTIONS ====================
+// ==================== CART FUNCTIONS ====================
 function updateCartBadge() {
     const total = cart.reduce((sum, item) => sum + item.quantity, 0);
     const badge = document.getElementById('cartBadge');
@@ -340,19 +134,269 @@ function renderCart() {
     });
 }
 
+// ==================== AUTHENTICATION ====================
+function getUsers() {
+    return JSON.parse(localStorage.getItem('users') || '[]');
+}
+
+function saveUsers(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+document.getElementById('doLoginBtn')?.addEventListener('click', () => {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    if (!email || !password) {
+        showNotification('Harap isi email dan password!', 'error');
+        return;
+    }
+    
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+        currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        document.getElementById('dropdownUserName').innerText = user.name;
+        
+        const savedCart = localStorage.getItem(`cart_${user.id}`);
+        cart = savedCart ? JSON.parse(savedCart) : [];
+        updateCartBadge();
+        
+        document.getElementById('authModal').classList.remove('active');
+        showNotification(`Login berhasil! Selamat datang, ${user.name}!`, 'success');
+        
+        // Reset form
+        document.getElementById('loginEmail').value = '';
+        document.getElementById('loginPassword').value = '';
+        
+        // Refresh halaman biar update
+        setTimeout(() => location.reload(), 1000);
+    } else {
+        showNotification('Email atau password salah!', 'error');
+    }
+});
+
+document.getElementById('doSignupBtn')?.addEventListener('click', () => {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    const address = document.getElementById('signupAddress').value;
+    
+    if (!name || !email || !password || !address) {
+        showNotification('Harap isi semua field!', 'error');
+        return;
+    }
+    
+    let users = getUsers();
+    
+    if (users.find(u => u.email === email)) {
+        showNotification('Email sudah terdaftar!', 'error');
+        return;
+    }
+    
+    const newUser = { 
+        id: users.length + 1,
+        name, 
+        email, 
+        password, 
+        address,
+        role: 'user', 
+        joined: new Date().toLocaleDateString('id-ID') 
+    };
+    
+    users.push(newUser);
+    saveUsers(users);
+    
+    currentUser = newUser;
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    document.getElementById('dropdownUserName').innerText = name;
+    cart = [];
+    
+    document.getElementById('authModal').classList.remove('active');
+    showNotification(`Pendaftaran berhasil! Selamat datang, ${name}!`, 'success');
+    
+    // Reset form
+    document.getElementById('signupName').value = '';
+    document.getElementById('signupEmail').value = '';
+    document.getElementById('signupPassword').value = '';
+    document.getElementById('signupAddress').value = '';
+    
+    setTimeout(() => location.reload(), 1000);
+});
+
+document.getElementById('logoutMenuBtn')?.addEventListener('click', () => {
+    currentUser = null;
+    localStorage.removeItem('currentUser');
+    cart = [];
+    document.getElementById('dropdownUserName').innerText = 'Guest';
+    document.getElementById('userDropdown').classList.remove('active');
+    showNotification('Anda telah logout', 'warning');
+    location.reload();
+});
+
+// ==================== CHECKOUT ====================
+document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+    if (cart.length === 0) {
+        showNotification('Keranjang kosong!', 'warning');
+        return;
+    }
+    
+    const address = document.getElementById('orderAddress').value;
+    if (!address) {
+        showNotification('Harap isi alamat pengiriman!', 'error');
+        return;
+    }
+    
+    let existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+    
+    const newOrder = {
+        id: existingOrders.length + 1,
+        userId: currentUser.id,
+        userName: currentUser.name,
+        userEmail: currentUser.email,
+        userAddress: address,
+        items: cart.map(item => ({
+            id: item.id,
+            name: item.name,
+            brand: item.brand,
+            price: item.price,
+            quantity: item.quantity
+        })),
+        total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
+        date: new Date().toLocaleString('id-ID'),
+        status: 'pending'
+    };
+    
+    existingOrders.push(newOrder);
+    localStorage.setItem('orders', JSON.stringify(existingOrders));
+    
+    showNotification('🎉 Pesanan berhasil!', 'success');
+    
+    cart = [];
+    localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+    updateCartBadge();
+    renderCart();
+    document.getElementById('orderAddress').value = '';
+    document.getElementById('cartModal').classList.remove('active');
+});
+
+// ==================== ADMIN PANEL (FULLY FIXED) ====================
+function openAdminPanel() {
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu!', 'warning');
+        openAuthModal();
+        return;
+    }
+    
+    if (currentUser.role !== 'admin' && currentUser.email !== 'admin@daniel.com') {
+        showNotification('🔐 Akses Admin khusus administrator! Login dengan admin@daniel.com / admin123', 'error');
+        return;
+    }
+    
+    updateAdminDashboard();
+    document.getElementById('adminModal').classList.add('active');
+}
+
+function updateAdminDashboard() {
+    const usersData = getUsers();
+    const ordersData = JSON.parse(localStorage.getItem('orders') || '[]');
+    
+    // Update stats
+    document.getElementById('statUsers').innerText = usersData.length;
+    document.getElementById('statProducts').innerText = database.products?.length || 0;
+    document.getElementById('statOrders').innerText = ordersData.length;
+    const totalRevenue = ordersData.reduce((sum, order) => sum + order.total, 0);
+    document.getElementById('statRevenue').innerText = totalRevenue.toLocaleString('id-ID');
+    
+    // Update chart
+    const ctx = document.getElementById('adminChart')?.getContext('2d');
+    if (ctx) {
+        if (window.adminChart) window.adminChart.destroy();
+        window.adminChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{ 
+                    label: 'Penjualan (Rp Juta)', 
+                    data: [85, 110, 135, 160, 190, 220], 
+                    borderColor: '#D4AF37', 
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3, 
+                    fill: true 
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: true }
+        });
+    }
+    
+    // Update orders list
+    const ordersContainer = document.getElementById('ordersList');
+    if (ordersContainer) {
+        if (ordersData.length === 0) {
+            ordersContainer.innerHTML = '<p style="text-align:center;padding:30px;">📭 Belum ada pesanan</p>';
+        } else {
+            ordersContainer.innerHTML = ordersData.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-id">🆔 #ORDER-${order.id}</span>
+                        <span class="order-date">📅 ${order.date}</span>
+                    </div>
+                    <div class="order-customer">
+                        <strong>👤 ${order.userName}</strong> (${order.userEmail})
+                    </div>
+                    <div class="order-address">
+                        📍 ${order.userAddress}
+                    </div>
+                    <div class="order-items">
+                        <strong>🛍️ Pesanan:</strong>
+                        <ul style="margin-left:20px; margin-top:5px;">
+                            ${order.items.map(item => `<li>${item.name} x ${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="order-total">
+                        💰 Total: Rp ${order.total.toLocaleString('id-ID')}
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+    
+    // Update users list (tanpa password - privasi)
+    const usersContainer = document.getElementById('usersList');
+    if (usersContainer) {
+        usersContainer.innerHTML = usersData.map(user => `
+            <div class="user-card">
+                <div class="user-info">
+                    <h4>${user.name}</h4>
+                    <p><i class="fas fa-envelope"></i> ${user.email}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ${user.address || 'Belum diisi'}</p>
+                    <p><i class="far fa-calendar"></i> Bergabung: ${user.joined}</p>
+                </div>
+                <div class="user-role">${user.role === 'admin' ? '👑 Admin' : '👤 User'}</div>
+            </div>
+        `).join('');
+    }
+}
+
+// ==================== MODAL CONTROLS ====================
+function openAuthModal() {
+    document.getElementById('authModal').classList.add('active');
+}
+
+function closeAllModals() {
+    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+}
+
+// ==================== NOTIFICATION ====================
 function showNotification(message, type = 'success') {
     const toast = document.getElementById('notificationToast');
-    let icon = type === 'success' ? '<i class="fas fa-check-circle"></i>' : 
-               type === 'error' ? '<i class="fas fa-times-circle"></i>' : 
-               '<i class="fas fa-exclamation-triangle"></i>';
+    let icon = type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️';
     
     toast.innerHTML = `${icon} ${message}`;
     toast.className = `notification-toast ${type} show`;
     setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function openAuthModal() {
-    document.getElementById('authModal').classList.add('active');
 }
 
 // ==================== PAGE NAVIGATION ====================
@@ -372,6 +416,11 @@ document.getElementById('userBtn')?.addEventListener('click', () => {
 });
 
 document.getElementById('cartBtn')?.addEventListener('click', () => {
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu!', 'warning');
+        openAuthModal();
+        return;
+    }
     renderCart();
     document.getElementById('cartModal').classList.add('active');
 });
@@ -391,14 +440,16 @@ document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
     document.getElementById('userDropdown').classList.remove('active');
 });
 
+document.getElementById('settingsMenuBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('settingsModal').classList.add('active');
+    document.getElementById('userDropdown').classList.remove('active');
+});
+
+// ADMIN PANEL BUTTON - FIXED!
 document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    if (currentUser?.role === 'admin' || currentUser?.email === 'admin@daniel.com') {
-        updateAdminDashboard();
-        document.getElementById('adminModal').classList.add('active');
-    } else {
-        showNotification('🔐 Akses Admin khusus administrator!', 'error');
-    }
+    openAdminPanel();
     document.getElementById('userDropdown').classList.remove('active');
 });
 
@@ -406,19 +457,38 @@ document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
 document.getElementById('darkModeBtn')?.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const icon = document.querySelector('#darkModeBtn i');
-    icon.classList.toggle('fa-moon');
-    icon.classList.toggle('fa-sun');
+    if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+});
+
+document.getElementById('settingsDarkBtn')?.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const icon = document.querySelector('#darkModeBtn i');
+    if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
 });
 
 // Close modals
-const closeButtons = ['closeAuthModal', 'closeProfileModal', 'closeSettingsModal', 'closeAdminModal', 'closeCartModal', 'closeProfileBtn', 'closeSettingsBtn', 'closeAdminBtn'];
-closeButtons.forEach(id => {
-    document.getElementById(id)?.addEventListener('click', () => {
-        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-    });
-});
+document.getElementById('closeAuthModal')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeProfileModal')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeSettingsModal')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeAdminModal')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeCartModal')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeProfileBtn')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeAllModals());
+document.getElementById('closeAdminBtn')?.addEventListener('click', () => closeAllModals());
 
-// Navigation
+// Navigation links
 document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -457,7 +527,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(btn.dataset.tab + 'Tab').classList.add('active');
+        const tabId = btn.dataset.tab + 'Tab';
+        document.getElementById(tabId).classList.add('active');
     });
 });
 
@@ -472,7 +543,7 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
     });
 });
 
-// Click outside close
+// Click outside to close dropdown
 window.addEventListener('click', (e) => {
     if (!e.target.closest('#userBtn') && !e.target.closest('#userDropdown')) {
         document.getElementById('userDropdown')?.classList.remove('active');
