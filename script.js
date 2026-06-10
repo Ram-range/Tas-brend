@@ -159,4 +159,209 @@ loginBtn?.addEventListener('click', () => {
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
         currentUser = user;
-        localStorage.setItem('
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        document.getElementById('userNameDisplay').innerText = user.name || user.email;
+        authModal.classList.remove('active');
+        showNotification(`Selamat datang, ${user.name || user.email}!`);
+        location.reload();
+    } else if (email === 'admin@luxury.com' && password === 'admin123') {
+        currentUser = { email: 'admin@luxury.com', name: 'Admin', role: 'admin' };
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        document.getElementById('userNameDisplay').innerText = 'Admin';
+        authModal.classList.remove('active');
+        showNotification('Selamat datang, Admin!');
+        location.reload();
+    } else {
+        showNotification('Email atau password salah!');
+    }
+});
+
+signupBtn?.addEventListener('click', () => {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    if (users.find(u => u.email === email)) {
+        showNotification('Email sudah terdaftar!');
+        return;
+    }
+    const newUser = { name, email, password, role: 'user' };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    currentUser = newUser;
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    document.getElementById('userNameDisplay').innerText = name;
+    authModal.classList.remove('active');
+    showNotification('Pendaftaran berhasil!');
+    location.reload();
+});
+
+logoutLink?.addEventListener('click', () => {
+    currentUser = null;
+    cart = [];
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('cart');
+    userDropdown.classList.remove('active');
+    showNotification('Anda telah logout');
+    location.reload();
+});
+
+// ==================== MODAL CONTROLS ====================
+document.querySelectorAll('.close-modal, #closeProfileBtn, #closeSettingsBtn, #closeAdminBtn, #closeCartModal').forEach(btn => {
+    btn?.addEventListener('click', () => {
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+    });
+});
+
+// Cart Modal
+document.getElementById('cartIconBtn')?.addEventListener('click', () => {
+    updateCartUI();
+    document.getElementById('cartModal').classList.add('active');
+});
+
+document.getElementById('closeCartModal')?.addEventListener('click', () => {
+    document.getElementById('cartModal').classList.remove('active');
+});
+
+// Profile Modal
+document.getElementById('profileLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentUser) {
+        document.getElementById('profileName').innerText = currentUser.name || currentUser.email;
+        document.getElementById('profileEmail').innerText = currentUser.email;
+        document.getElementById('profileRole').innerText = currentUser.role === 'admin' ? 'Administrator' : 'Pengguna';
+        document.getElementById('profileModal').classList.add('active');
+    } else {
+        authModal.classList.add('active');
+    }
+    userDropdown.classList.remove('active');
+});
+
+// Settings Modal
+document.getElementById('settingsLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('settingsModal').classList.add('active');
+    userDropdown.classList.remove('active');
+});
+
+document.getElementById('settingsDarkModeBtn')?.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const icon = document.querySelector('#darkModeToggle i');
+    if (icon) {
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
+});
+
+// Dark Mode Toggle (Navbar)
+document.getElementById('darkModeToggle')?.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const icon = document.querySelector('#darkModeToggle i');
+    if (document.body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+});
+
+// Admin Panel
+document.getElementById('adminPanelLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentUser?.role === 'admin' || currentUser?.email === 'admin@luxury.com') {
+        updateAdminStats();
+        document.getElementById('adminModal').classList.add('active');
+    } else {
+        showNotification('Akses Admin hanya untuk administrator!');
+    }
+    userDropdown.classList.remove('active');
+});
+
+function updateAdminStats() {
+    document.getElementById('totalUsers').innerText = users.length + 1;
+    document.getElementById('totalProducts').innerText = products.length;
+    const totalOrders = cart.length;
+    document.getElementById('totalOrders').innerText = totalOrders;
+    const revenue = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('totalRevenue').innerText = revenue.toLocaleString('id-ID');
+    
+    if (adminChart) adminChart.destroy();
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    adminChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+            datasets: [{ label: 'Penjualan (Rp Juta)', data: [120, 145, 168, 190, 210, 245], borderColor: '#d4af37', tension: 0.3 }]
+        }
+    });
+}
+
+// ==================== NAVIGASI SMOOTH SCROLL ====================
+const sections = {
+    home: document.getElementById('homeSection'),
+    about: document.getElementById('aboutSection'),
+    skills: document.getElementById('skillsSection'),
+    projects: document.getElementById('projectsSection'),
+    contact: document.getElementById('contactSection')
+};
+
+document.querySelectorAll('[data-nav]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const navValue = link.getAttribute('data-nav');
+        if (sections[navValue]) {
+            sections[navValue].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// ==================== HAMBURGER MENU (3 GARIS) ====================
+document.getElementById('hamburgerBtn')?.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('active');
+});
+
+// ==================== SHOP NOW ====================
+document.getElementById('shopNowBtn')?.addEventListener('click', () => {
+    document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ==================== CHECKOUT ====================
+document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+    if (cart.length === 0) {
+        showNotification('Keranjang kosong!');
+        return;
+    }
+    showNotification('Terima kasih! Pesanan Anda sedang diproses.');
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    document.getElementById('cartModal').classList.remove('active');
+});
+
+// ==================== INIT ====================
+renderProducts();
+updateCartUI();
+
+// Auth tabs
+document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + 'Form').classList.add('active');
+    });
+});
+
+// Close modal klik luar
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('active');
+    }
+});
