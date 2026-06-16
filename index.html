@@ -84,6 +84,7 @@
             <input type="email" id="loginEmail" placeholder="Email" class="modal-input">
             <input type="password" id="loginPassword" placeholder="Password" class="modal-input">
             <button class="modal-btn" id="doLoginBtn">Login</button>
+            <p class="demo-text">🔐 Admin: admin@daniel.com / admin123</p>
         </div>
         <div class="tab-content" id="signupTab">
             <h3>Create Account</h3>
@@ -92,7 +93,6 @@
             <input type="password" id="signupPassword" placeholder="Password" class="modal-input">
             <input type="text" id="signupAddress" placeholder="Alamat Lengkap" class="modal-input">
             <button class="modal-btn" id="doSignupBtn">Daftar</button>
-            <p class="demo-text">🔐 daftar gratis untuk semua users</p>
         </div>
     </div>
 </div>
@@ -152,28 +152,28 @@
         
         <div class="admin-tabs">
             <button class="admin-tab-btn active" data-admin-tab="stats">Statistik</button>
-            <button class="admin-tab-btn" data-admin-tab="orders">Pesanan Masuk</button>
+            <button class="admin-tab-btn" data-admin-tab="orders">Pesanan</button>
             <button class="admin-tab-btn" data-admin-tab="users">Data User</button>
         </div>
         
         <div class="admin-tab-content active" id="adminStatsTab">
             <div class="admin-stats">
-                <div class="stat-card"><i class="fas fa-users"></i><span id="statUsers">0</span><p>Total Pengguna</p></div>
-                <div class="stat-card"><i class="fas fa-box"></i><span id="statProducts">17</span><p>Total Produk</p></div>
-                <div class="stat-card"><i class="fas fa-shopping-cart"></i><span id="statOrders">0</span><p>Total Pesanan</p></div>
-                <div class="stat-card"><i class="fas fa-dollar-sign"></i><span id="statRevenue">0</span><p>Pendapatan</p></div>
+                <div class="stat-card"><i class="fas fa-users"></i><span id="statUsers">0</span><p>Pengguna</p></div>
+                <div class="stat-card"><i class="fas fa-box"></i><span id="statProducts">17</span><p>Produk</p></div>
+                <div class="stat-card"><i class="fas fa-shopping-cart"></i><span id="statOrders">0</span><p>Pesanan</p></div>
+                <div class="stat-card"><i class="fas fa-dollar-sign"></i><span id="statRevenue">0</span><p>Revenue</p></div>
             </div>
-            <canvas id="adminChart" width="400" height="200" style="max-width:100%"></canvas>
+            <canvas id="adminChart" width="400" height="200"></canvas>
         </div>
         
         <div class="admin-tab-content" id="adminOrdersTab">
-            <h3 style="margin-bottom: 15px;"><i class="fas fa-truck"></i> Daftar Pesanan</h3>
+            <h3><i class="fas fa-truck"></i> Daftar Pesanan</h3>
             <div id="ordersList" class="orders-list"></div>
         </div>
         
         <div class="admin-tab-content" id="adminUsersTab">
-            <h3 style="margin-bottom: 15px;"><i class="fas fa-users"></i> Data Pengguna</h3>
-            <p style="font-size:0.8rem; color:var(--gray); margin-bottom:15px;"><i class="fas fa-lock"></i> Password tidak ditampilkan untuk privasi</p>
+            <h3><i class="fas fa-users"></i> Data Pengguna</h3>
+            <p class="privacy-note"><i class="fas fa-lock"></i> Password tidak ditampilkan untuk privasi</p>
             <div id="usersList" class="users-list"></div>
         </div>
         
@@ -181,9 +181,18 @@
     </div>
 </div>
 
+<!-- ============ HALAMAN DETAIL PRODUK ============ -->
+<div class="modal" id="productDetailModal">
+    <div class="modal-content modal-large modal-product-detail">
+        <button class="modal-close" id="closeProductDetail">&times;</button>
+        <div class="product-detail-container" id="productDetailContainer">
+            <!-- Isi akan di-generate oleh JavaScript -->
+        </div>
+    </div>
+</div>
+
 <!-- MAIN CONTENT -->
 <main>
-    <!-- HOME SECTION -->
     <section id="home" class="page-section active">
         <div class="hero">
             <div class="container">
@@ -196,7 +205,7 @@
             </div>
         </div>
         
-        <div class="products-section">
+        <div class="products-section" id="productsSection">
             <div class="container">
                 <div class="section-title">
                     <h2>✨ Koleksi Tas Mewah ✨</h2>
@@ -207,7 +216,6 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about" class="page-section">
         <div class="container">
             <div class="about-wrapper">
@@ -216,7 +224,7 @@
                     <h2>Luxury Bags <br><span class="gold-text">Since 2024</span></h2>
                     <p>Platform premium yang menyediakan koleksi tas mewah dari brand-brand ternama dunia. Kami berkomitmen memberikan pengalaman berbelanja eksklusif dengan autentisitas terjamin.</p>
                     <div class="about-stats">
-                        <div><h3>17+</h3><p>Brand Premium</p></div>
+                        <div><h3>17+</h3><p>Brand</p></div>
                         <div><h3>500+</h3><p>Pelanggan</p></div>
                         <div><h3>100%</h3><p>Original</p></div>
                     </div>
@@ -228,7 +236,6 @@
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section id="skills" class="page-section">
         <div class="container">
             <div class="section-title">
@@ -236,15 +243,14 @@
                 <p>Spesialisasi dalam industri fashion mewah</p>
             </div>
             <div class="skills-grid">
-                <div class="skill-card"><i class="fas fa-gem"></i><h3>Luxury Curation</h3><p>Kurasi produk premium</p></div>
-                <div class="skill-card"><i class="fas fa-chart-line"></i><h3>Market Analysis</h3><p>Analisis tren fashion</p></div>
-                <div class="skill-card"><i class="fas fa-handshake"></i><h3>Authenticity</h3><p>Garansi keaslian 100%</p></div>
+                <div class="skill-card"><i class="fas fa-gem"></i><h3>Luxury Curation</h3><p>Kurasi premium</p></div>
+                <div class="skill-card"><i class="fas fa-chart-line"></i><h3>Market Analysis</h3><p>Analisis tren</p></div>
+                <div class="skill-card"><i class="fas fa-handshake"></i><h3>Authenticity</h3><p>Garansi 100%</p></div>
                 <div class="skill-card"><i class="fas fa-truck-fast"></i><h3>Global Shipping</h3><p>Pengiriman worldwide</p></div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
     <section id="projects" class="page-section">
         <div class="container">
             <div class="section-title">
@@ -260,7 +266,6 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section id="contact" class="page-section">
         <div class="container">
             <div class="section-title">
