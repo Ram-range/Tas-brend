@@ -1,22 +1,175 @@
-// ==================== DATA PRODUK ====================
+// ==================== DATA PRODUK DENGAN FOTO UNIK ====================
 const products = [
-    { id: 1, name: "Hermès Birkin 30", brand: "HERMÈS", price: 325000000, desc: "Tas tangan mewah ikonik", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=280&fit=crop" },
-    { id: 2, name: "Chanel Classic Flap", brand: "CHANEL", price: 185000000, desc: "Classic Flap quilted leather", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=280&fit=crop" },
-    { id: 3, name: "Louis Vuitton Neverfull", brand: "LOUIS VUITTON", price: 28500000, desc: "Tas tote spacious", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
-    { id: 4, name: "Gucci Dionysus", brand: "GUCCI", price: 32500000, desc: "Closure tiger head signature", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
-    { id: 5, name: "Prada Saffiano", brand: "PRADA", price: 22800000, desc: "Tas kulit saffiano elegan", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
-    { id: 6, name: "Dior Lady Dior", brand: "DIOR", price: 125000000, desc: "Tas ikonik quilting", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
-    { id: 7, name: "YSL Cassandra", brand: "SAINT LAURENT", price: 32500000, desc: "Tas flap logo YSL", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
-    { id: 8, name: "Fendi Baguette", brand: "FENDI", price: 42500000, desc: "Tas Baguette klasik", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
-    { id: 9, name: "Celine Triomphe", brand: "CELINE", price: 48500000, desc: "Logo Triomphe chic", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" },
-    { id: 10, name: "Bottega Cassette", brand: "BOTTEGA VENETA", price: 52000000, desc: "Tas anyaman leather", image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400&h=280&fit=crop" },
-    { id: 11, name: "Loewe Puzzle", brand: "LOEWE", price: 39800000, desc: "Desain puzzle unik", image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=400&h=280&fit=crop" },
-    { id: 12, name: "Goyard St. Louis", brand: "GOYARD", price: 28500000, desc: "Motif Chevron", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=280&fit=crop" },
-    { id: 13, name: "Miu Miu Wander", brand: "MIU MIU", price: 22900000, desc: "Playful elegant", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=280&fit=crop" },
-    { id: 14, name: "Balenciaga City", brand: "BALENCIAGA", price: 27500000, desc: "Tas motor edgy", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=280&fit=crop" },
-    { id: 15, name: "Givenchy Antigona", brand: "GIVENCHY", price: 35800000, desc: "Structured silhouette", image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=400&h=280&fit=crop" },
-    { id: 16, name: "Coach Tabby", brand: "COACH", price: 5500000, desc: "Tas flap modern", image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=400&h=280&fit=crop" },
-    { id: 17, name: "Michael Kors Jet Set", brand: "MICHAEL KORS", price: 4250000, desc: "Tas tote casual", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=280&fit=crop" }
+    { 
+        id: 1, 
+        name: "Hermès Birkin 30", 
+        brand: "HERMÈS", 
+        price: 325000000, 
+        desc: "Tas tangan mewah ikonik dari Hermès, kulit Togo premium dengan hardware emas. Tas ini adalah simbol status dan kemewahan tertinggi di dunia fashion.", 
+        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=450&fit=crop",
+        stock: 5,
+        specs: "Kulit Togo, Hardware Emas, Ukuran 30cm, Buatan Prancis"
+    },
+    { 
+        id: 2, 
+        name: "Chanel Classic Flap", 
+        brand: "CHANEL", 
+        price: 185000000, 
+        desc: "Classic Flap bag dengan quilted leather dan chain strap emas. Desain timeless yang menjadi ikon fashion dunia.", 
+        image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&h=450&fit=crop",
+        stock: 3,
+        specs: "Quilted Leather, Chain Strap Emas, Ukuran Medium, Buatan Italia"
+    },
+    { 
+        id: 3, 
+        name: "Louis Vuitton Neverfull", 
+        brand: "LOUIS VUITTON", 
+        price: 28500000, 
+        desc: "Tas tote spacious dengan canvas monogram iconic. Sangat praktis untuk sehari-hari dengan kapasitas besar.", 
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=450&fit=crop",
+        stock: 10,
+        specs: "Canvas Monogram, Leather Trim, Ukuran GM, Buatan Prancis"
+    },
+    { 
+        id: 4, 
+        name: "Gucci Dionysus", 
+        brand: "GUCCI", 
+        price: 32500000, 
+        desc: "Tas dengan closure tiger head signature yang sangat elegan. Desain mewah dengan detail hardware yang memukau.", 
+        image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&h=450&fit=crop",
+        stock: 7,
+        specs: "Suede Leather, Tiger Head Closure, Chain Strap, Buatan Italia"
+    },
+    { 
+        id: 5, 
+        name: "Prada Saffiano", 
+        brand: "PRADA", 
+        price: 22800000, 
+        desc: "Tas kulit saffiano elegan dengan hardware gold. Desain minimalis yang cocok untuk wanita karir.", 
+        image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=600&h=450&fit=crop",
+        stock: 8,
+        specs: "Saffiano Leather, Hardware Gold, Ukuran Medium, Buatan Italia"
+    },
+    { 
+        id: 6, 
+        name: "Dior Lady Dior", 
+        brand: "DIOR", 
+        price: 125000000, 
+        desc: "Tas ikonik dengan quilting cannage dan charm DIOR. Simbol keanggunan dan kemewahan dari rumah mode Prancis.", 
+        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=450&fit=crop",
+        stock: 4,
+        specs: "Cannage Quilting, Charm DIOR, Hardware Gold, Buatan Prancis"
+    },
+    { 
+        id: 7, 
+        name: "YSL Cassandra", 
+        brand: "SAINT LAURENT", 
+        price: 32500000, 
+        desc: "Tas flap dengan logo YSL besar yang statement. Desain bold dan elegan untuk tampilan yang berani.", 
+        image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=600&h=450&fit=crop",
+        stock: 6,
+        specs: "Leather Flap, Logo YSL, Chain Strap, Buatan Italia"
+    },
+    { 
+        id: 8, 
+        name: "Fendi Baguette", 
+        brand: "FENDI", 
+        price: 42500000, 
+        desc: "Tas Baguette klasik dengan FF logo iconic. Tas ini menjadi tren global dan favorit para selebriti.", 
+        image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&h=450&fit=crop",
+        stock: 5,
+        specs: "FF Logo, Leather, Ukuran Baguette, Buatan Italia"
+    },
+    { 
+        id: 9, 
+        name: "Celine Triomphe", 
+        brand: "CELINE", 
+        price: 48500000, 
+        desc: "Tas dengan logo Triomphe yang chic dan minimalis. Desain clean dan timeless dari rumah mode Prancis.", 
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=450&fit=crop",
+        stock: 4,
+        specs: "Leather, Triomphe Logo, Hardware Gold, Buatan Prancis"
+    },
+    { 
+        id: 10, 
+        name: "Bottega Cassette", 
+        brand: "BOTTEGA VENETA", 
+        price: 52000000, 
+        desc: "Tas anyaman leather signature BV yang sangat stylish. Desain unik dengan teknik anyaman khas Italia.", 
+        image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600&h=450&fit=crop",
+        stock: 3,
+        specs: "Intrecciato Leather, Ukuran Medium, Buatan Italia"
+    },
+    { 
+        id: 11, 
+        name: "Loewe Puzzle", 
+        brand: "LOEWE", 
+        price: 39800000, 
+        desc: "Tas dengan desain puzzle unik dan geometris. Inovasi desain yang memadukan seni dan fungsionalitas.", 
+        image: "https://images.unsplash.com/photo-1591561954555-6c640d980efe?w=600&h=450&fit=crop",
+        stock: 6,
+        specs: "Leather, Puzzle Design, Hardware Silver, Buatan Spanyol"
+    },
+    { 
+        id: 12, 
+        name: "Goyard St. Louis", 
+        brand: "GOYARD", 
+        price: 28500000, 
+        desc: "Tas tote mewah dengan motif Chevron hand-painted. Tas favorit para kalangan elite Eropa.", 
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=450&fit=crop",
+        stock: 5,
+        specs: "Canvas, Chevron Motif, Leather Trim, Buatan Prancis"
+    },
+    { 
+        id: 13, 
+        name: "Miu Miu Wander", 
+        brand: "MIU MIU", 
+        price: 22900000, 
+        desc: "Tas dengan desain playful namun tetap elegant. Koleksi favorit para fashionista muda.", 
+        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=450&fit=crop",
+        stock: 7,
+        specs: "Matelassé Leather, Chain Strap, Buatan Italia"
+    },
+    { 
+        id: 14, 
+        name: "Balenciaga City", 
+        brand: "BALENCIAGA", 
+        price: 27500000, 
+        desc: "Tas motor edgy iconic dengan studs. Tas ini adalah simbol gaya urban dan keberanian.", 
+        image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&h=450&fit=crop",
+        stock: 8,
+        specs: "Motorcycle Leather, Stud Details, Hardware Silver, Buatan Italia"
+    },
+    { 
+        id: 15, 
+        name: "Givenchy Antigona", 
+        brand: "GIVENCHY", 
+        price: 35800000, 
+        desc: "Tas structured dengan silhouette tegas dan mewah. Desain yang kuat dan elegan.", 
+        image: "https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=600&h=450&fit=crop",
+        stock: 4,
+        specs: "Structured Leather, Hardware Silver, Ukuran Medium, Buatan Italia"
+    },
+    { 
+        id: 16, 
+        name: "Coach Tabby", 
+        brand: "COACH", 
+        price: 5500000, 
+        desc: "Tas flap dengan desain modern dan vintage vibe. Kombinasi sempurna antara klasik dan kontemporer.", 
+        image: "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&h=450&fit=crop",
+        stock: 12,
+        specs: "Glove-tanned Leather, Signature Canvas, Hardware Gold, Buatan USA"
+    },
+    { 
+        id: 17, 
+        name: "Michael Kors Jet Set", 
+        brand: "MICHAEL KORS", 
+        price: 4250000, 
+        desc: "Tas tote casual mewah untuk sehari-hari. Praktis, stylish, dan sangat fungsional.", 
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=450&fit=crop",
+        stock: 15,
+        specs: "Saffiano Leather, Logo Hardware, Ukuran Large, Buatan USA"
+    }
 ];
 
 // ==================== DEFAULT USERS ====================
@@ -68,7 +221,7 @@ function renderProducts() {
     if (!grid) return;
     
     grid.innerHTML = products.map(p => `
-        <div class="product-card">
+        <div class="product-card" onclick="openProductDetail(${p.id})">
             <div class="product-image" style="background-image: url('${p.image}');">
                 <span class="product-badge">PREMIUM</span>
             </div>
@@ -77,19 +230,88 @@ function renderProducts() {
                 <p class="product-brand">${p.brand}</p>
                 <p class="product-desc">${p.desc.substring(0, 45)}...</p>
                 <p class="product-price">Rp ${p.price.toLocaleString('id-ID')}</p>
-                <button class="add-to-cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button>
+                <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">
+                    <i class="fas fa-cart-plus"></i> Tambah
+                </button>
             </div>
         </div>
     `).join('');
-    
-    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            addToCart(parseInt(btn.dataset.id));
-        });
-    });
 }
 
+// ==================== PRODUCT DETAIL (MODAL) ====================
+function openProductDetail(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    const container = document.getElementById('productDetailContainer');
+    const modal = document.getElementById('productDetailModal');
+    
+    container.innerHTML = `
+        <div class="product-detail-image" style="background-image: url('${product.image}');">
+            <span class="badge">${product.brand}</span>
+        </div>
+        <div class="product-detail-info">
+            <p class="brand">${product.brand}</p>
+            <h2>${product.name}</h2>
+            <p class="price">Rp ${product.price.toLocaleString('id-ID')}</p>
+            <p class="stock">
+                <span class="available">✓ Tersedia ${product.stock} pcs</span>
+            </p>
+            <p class="desc">${product.desc}</p>
+            <div class="specs">
+                <p><strong>Spesifikasi:</strong></p>
+                <p>${product.specs}</p>
+            </div>
+            <div class="product-detail-actions">
+                <button class="btn-buy" onclick="buyNow(${product.id})">
+                    <i class="fas fa-bolt"></i> Beli Sekarang
+                </button>
+                <button class="btn-cart" onclick="addToCart(${product.id}); closeProductDetail();">
+                    <i class="fas fa-cart-plus"></i> Tambah Keranjang
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductDetail() {
+    document.getElementById('productDetailModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function buyNow(productId) {
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu!', 'warning');
+        openAuthModal();
+        closeProductDetail();
+        return;
+    }
+    
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    // Cek apakah sudah ada di cart
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+    updateCartBadge();
+    closeProductDetail();
+    showNotification(`${product.name} ditambahkan!`, 'success');
+    
+    // Buka cart
+    renderCart();
+    document.getElementById('cartModal').classList.add('active');
+}
+
+// ==================== ADD TO CART ====================
 function addToCart(id) {
     if (!currentUser) {
         showNotification('Silakan login terlebih dahulu!', 'warning');
@@ -135,7 +357,9 @@ function renderCart() {
                 <h4 style="font-size:0.9rem;">${item.name}</h4>
                 <p style="font-size:0.8rem;">Rp ${item.price.toLocaleString('id-ID')} x ${item.quantity}</p>
             </div>
-            <button class="cancel-btn" data-id="${item.id}"><i class="fas fa-trash"></i> Batal</button>
+            <button class="cancel-btn" onclick="removeFromCart(${item.id})">
+                <i class="fas fa-trash"></i> Batal
+            </button>
         </div>
     `).join('');
     
@@ -143,18 +367,15 @@ function renderCart() {
     const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
     document.getElementById('cartTotalItems').innerText = totalItems;
     document.getElementById('cartTotalPrice').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-    
-    document.querySelectorAll('.cancel-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = parseInt(btn.dataset.id);
-            const product = cart.find(item => item.id === id);
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
-            updateCartBadge();
-            renderCart();
-            showNotification(`${product.name} dibatalkan`, 'warning');
-        });
-    });
+}
+
+function removeFromCart(id) {
+    const product = cart.find(item => item.id === id);
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cart));
+    updateCartBadge();
+    renderCart();
+    showNotification(`${product.name} dibatalkan`, 'warning');
 }
 
 // ==================== AUTHENTICATION ====================
@@ -297,108 +518,81 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
     document.getElementById('cartModal').classList.remove('active');
 });
 
-// ==================== ADMIN PANEL (FULLY FIXED) ====================
+// ==================== ADMIN PANEL ====================
 function openAdminPanel() {
-    // Cek login
     if (!currentUser) {
         showNotification('Silakan login terlebih dahulu!', 'warning');
         openAuthModal();
         return;
     }
     
-    // Cek role admin
     if (currentUser.role !== 'admin' && currentUser.email !== 'admin@daniel.com') {
         showNotification('🔐 Akses Admin khusus administrator!', 'error');
         return;
     }
     
-    // Update data
     updateAdminDashboard();
-    
-    // Tampilkan modal
-    const adminModal = document.getElementById('adminModal');
-    if (adminModal) {
-        adminModal.classList.add('active');
-        console.log('✅ Admin Modal dibuka');
-    } else {
-        console.error('❌ Admin Modal tidak ditemukan!');
-        showNotification('Error: Modal admin tidak ditemukan!', 'error');
-    }
+    document.getElementById('adminModal').classList.add('active');
 }
 
 function updateAdminDashboard() {
     const usersData = getUsers();
     const ordersData = JSON.parse(localStorage.getItem('orders') || '[]');
     
-    // 1. Update Statistik
     document.getElementById('statUsers').innerText = usersData.length;
     document.getElementById('statProducts').innerText = products.length;
     document.getElementById('statOrders').innerText = ordersData.length;
     const totalRevenue = ordersData.reduce((sum, order) => sum + order.total, 0);
     document.getElementById('statRevenue').innerText = 'Rp ' + totalRevenue.toLocaleString('id-ID');
     
-    // 2. Chart (pakai canvas biasa, tanpa Chart.js biar simple dan pasti jalan)
-    drawSimpleChart(ordersData);
+    // Chart sederhana
+    drawChart();
     
-    // 3. Orders List
+    // Orders
     const ordersContainer = document.getElementById('ordersList');
     if (ordersContainer) {
         if (ordersData.length === 0) {
-            ordersContainer.innerHTML = `
-                <div style="text-align:center;padding:40px;color:var(--gray);">
-                    <i class="fas fa-inbox" style="font-size:3rem;display:block;margin-bottom:15px;"></i>
-                    Belum ada pesanan masuk
-                </div>
-            `;
+            ordersContainer.innerHTML = '<p style="text-align:center;padding:30px;">📭 Belum ada pesanan</p>';
         } else {
             ordersContainer.innerHTML = ordersData.map(order => `
-                <div class="order-card" style="border-left:4px solid var(--gold);">
+                <div class="order-card">
                     <div class="order-header">
-                        <span class="order-id">🆔 #ORDER-${order.id}</span>
+                        <span class="order-id">#ORDER-${order.id}</span>
                         <span class="order-date">📅 ${order.date}</span>
-                        <span style="background:var(--gold);padding:2px 10px;border-radius:20px;font-size:0.7rem;color:var(--dark);">${order.status === 'pending' ? '⏳ Menunggu' : '✅ Selesai'}</span>
                     </div>
                     <div class="order-customer">
                         <strong>👤 ${order.userName}</strong> (${order.userEmail})
                     </div>
-                    <div class="order-address" style="background:#f5f5f5;padding:8px 12px;border-radius:8px;margin:8px 0;font-size:0.85rem;">
-                        📍 ${order.userAddress}
-                    </div>
-                    <div class="order-items" style="font-size:0.85rem;">
+                    <div class="order-address">📍 ${order.userAddress}</div>
+                    <div class="order-items">
                         <strong>🛍️ Pesanan:</strong>
-                        <ul style="margin-left:20px;margin-top:5px;">
+                        <ul style="margin-left:20px;">
                             ${order.items.map(item => `<li>${item.name} x ${item.quantity} = Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</li>`).join('')}
                         </ul>
                     </div>
-                    <div class="order-total" style="font-weight:700;color:var(--gold);text-align:right;margin-top:10px;font-size:1.1rem;">
-                        💰 Total: Rp ${order.total.toLocaleString('id-ID')}
-                    </div>
+                    <div class="order-total">💰 Total: Rp ${order.total.toLocaleString('id-ID')}</div>
                 </div>
             `).join('');
         }
     }
     
-    // 4. Users List (tanpa password)
+    // Users
     const usersContainer = document.getElementById('usersList');
     if (usersContainer) {
         usersContainer.innerHTML = usersData.map(user => `
-            <div class="user-card" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#f5f5f5;border-radius:8px;margin-bottom:10px;">
+            <div class="user-card">
                 <div class="user-info">
-                    <h4 style="font-size:0.95rem;">${user.name}</h4>
-                    <p style="font-size:0.8rem;color:var(--gray);"><i class="fas fa-envelope"></i> ${user.email}</p>
-                    <p style="font-size:0.8rem;color:var(--gray);"><i class="fas fa-map-marker-alt"></i> ${user.address || 'Belum diisi'}</p>
-                    <p style="font-size:0.7rem;color:var(--gray);"><i class="far fa-calendar"></i> Bergabung: ${user.joined}</p>
+                    <h4>${user.name}</h4>
+                    <p><i class="fas fa-envelope"></i> ${user.email}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ${user.address || 'Belum diisi'}</p>
                 </div>
-                <div class="user-role" style="background:var(--gold);padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;color:var(--dark);">
-                    ${user.role === 'admin' ? '👑 Admin' : '👤 User'}
-                </div>
+                <div class="user-role">${user.role === 'admin' ? '👑 Admin' : '👤 User'}</div>
             </div>
         `).join('');
     }
 }
 
-// Simple Chart tanpa Chart.js (pasti jalan)
-function drawSimpleChart(ordersData) {
+function drawChart() {
     const canvas = document.getElementById('adminChart');
     if (!canvas) return;
     
@@ -408,10 +602,9 @@ function drawSimpleChart(ordersData) {
     
     ctx.clearRect(0, 0, w, h);
     
-    // Data dummy untuk chart (6 bulan terakhir)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-    const salesData = [85, 110, 135, 160, 190, 220];
-    const maxVal = Math.max(...salesData) + 50;
+    const data = [85, 110, 135, 160, 190, 220];
+    const maxVal = Math.max(...data) + 50;
     
     // Grid
     ctx.strokeStyle = '#e0e0e0';
@@ -428,34 +621,34 @@ function drawSimpleChart(ordersData) {
         ctx.fillText(Math.round(maxVal * i / 5 / 10) * 10 + 'Jt', 35, y + 3);
     }
     
-    // Area chart
+    // Area
     ctx.beginPath();
     ctx.moveTo(40, h - 20);
-    for (let i = 0; i < salesData.length; i++) {
-        const x = 40 + (i * (w - 60) / (salesData.length - 1));
-        const y = h - 20 - ((salesData[i] / maxVal) * (h - 40));
+    for (let i = 0; i < data.length; i++) {
+        const x = 40 + (i * (w - 60) / (data.length - 1));
+        const y = h - 20 - ((data[i] / maxVal) * (h - 40));
         if (i === 0) ctx.lineTo(x, y);
         else {
-            const prevX = 40 + ((i - 1) * (w - 60) / (salesData.length - 1));
-            const prevY = h - 20 - ((salesData[i - 1] / maxVal) * (h - 40));
+            const prevX = 40 + ((i - 1) * (w - 60) / (data.length - 1));
+            const prevY = h - 20 - ((data[i - 1] / maxVal) * (h - 40));
             ctx.lineTo((prevX + x) / 2, prevY);
             ctx.lineTo((prevX + x) / 2, y);
         }
     }
-    ctx.lineTo(40 + (salesData.length - 1) * (w - 60) / (salesData.length - 1), h - 20);
+    ctx.lineTo(40 + (data.length - 1) * (w - 60) / (data.length - 1), h - 20);
     ctx.closePath();
     ctx.fillStyle = 'rgba(212, 175, 55, 0.2)';
     ctx.fill();
     
-    // Line chart
+    // Line
     ctx.beginPath();
-    for (let i = 0; i < salesData.length; i++) {
-        const x = 40 + (i * (w - 60) / (salesData.length - 1));
-        const y = h - 20 - ((salesData[i] / maxVal) * (h - 40));
+    for (let i = 0; i < data.length; i++) {
+        const x = 40 + (i * (w - 60) / (data.length - 1));
+        const y = h - 20 - ((data[i] / maxVal) * (h - 40));
         if (i === 0) ctx.moveTo(x, y);
         else {
-            const prevX = 40 + ((i - 1) * (w - 60) / (salesData.length - 1));
-            const prevY = h - 20 - ((salesData[i - 1] / maxVal) * (h - 40));
+            const prevX = 40 + ((i - 1) * (w - 60) / (data.length - 1));
+            const prevY = h - 20 - ((data[i - 1] / maxVal) * (h - 40));
             ctx.bezierCurveTo((prevX + x) / 2, prevY, (prevX + x) / 2, y, x, y);
         }
     }
@@ -467,15 +660,15 @@ function drawSimpleChart(ordersData) {
     ctx.fillStyle = '#666';
     ctx.font = '11px sans-serif';
     ctx.textAlign = 'center';
-    for (let i = 0; i < salesData.length; i++) {
-        const x = 40 + (i * (w - 60) / (salesData.length - 1));
+    for (let i = 0; i < data.length; i++) {
+        const x = 40 + (i * (w - 60) / (data.length - 1));
         ctx.fillText(months[i], x, h - 5);
     }
     
     // Points
-    for (let i = 0; i < salesData.length; i++) {
-        const x = 40 + (i * (w - 60) / (salesData.length - 1));
-        const y = h - 20 - ((salesData[i] / maxVal) * (h - 40));
+    for (let i = 0; i < data.length; i++) {
+        const x = 40 + (i * (w - 60) / (data.length - 1));
+        const y = h - 20 - ((data[i] / maxVal) * (h - 40));
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
         ctx.fillStyle = '#D4AF37';
@@ -490,11 +683,8 @@ function drawSimpleChart(ordersData) {
 
 // User dropdown
 document.getElementById('userBtn')?.addEventListener('click', () => {
-    if (!currentUser) {
-        openAuthModal();
-    } else {
-        document.getElementById('userDropdown').classList.toggle('active');
-    }
+    if (!currentUser) openAuthModal();
+    else document.getElementById('userDropdown').classList.toggle('active');
 });
 
 // Cart button
@@ -508,7 +698,7 @@ document.getElementById('cartBtn')?.addEventListener('click', () => {
     document.getElementById('cartModal').classList.add('active');
 });
 
-// Profile menu
+// Profile
 document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     if (currentUser) {
@@ -524,19 +714,28 @@ document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
     document.getElementById('userDropdown').classList.remove('active');
 });
 
-// Settings menu
+// Settings
 document.getElementById('settingsMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('settingsModal').classList.add('active');
     document.getElementById('userDropdown').classList.remove('active');
 });
 
-// ADMIN PANEL BUTTON - PASTI BISA DI KLIK!
+// Admin Panel
 document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('🔑 Admin Panel diklik!');
     openAdminPanel();
     document.getElementById('userDropdown').classList.remove('active');
+});
+
+// Close Product Detail
+document.getElementById('closeProductDetail')?.addEventListener('click', closeProductDetail);
+
+// Click outside product detail
+document.getElementById('productDetailModal')?.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('productDetailModal')) {
+        closeProductDetail();
+    }
 });
 
 // Dark mode
@@ -589,7 +788,7 @@ document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
     });
 });
 
-// BELANJA SEKARANG - SCROLL KE PRODUK
+// Belanja Sekarang
 document.getElementById('shopBtn')?.addEventListener('click', () => {
     const productsSection = document.getElementById('productsSection');
     if (productsSection) {
@@ -648,14 +847,14 @@ window.addEventListener('click', (e) => {
     if (userBtnEl && userDropdownEl && !userBtnEl.contains(e.target) && !userDropdownEl.contains(e.target)) {
         userDropdownEl.classList.remove('active');
     }
-    if (e.target.classList.contains('modal')) {
+    if (e.target.classList.contains('modal') && e.target.id !== 'productDetailModal') {
         e.target.classList.remove('active');
     }
 });
 
 // ==================== INIT ====================
 window.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Website Luxury Bags Dimulai!');
+    console.log('🚀 Luxury Bags Dimulai!');
     initDatabase();
     renderProducts();
     
@@ -672,7 +871,6 @@ window.addEventListener('DOMContentLoaded', () => {
     
     showPage('home');
     
-    // Loading screen cepat
     setTimeout(() => {
         const loader = document.getElementById('loadingScreen');
         if (loader) {
