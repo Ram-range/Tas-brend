@@ -238,13 +238,18 @@ function renderProducts() {
     `).join('');
 }
 
-// ==================== PRODUCT DETAIL (MODAL) ====================
+// ==================== PRODUCT DETAIL (MODAL) - FIX SCROLL ====================
 function openProductDetail(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
     
     const container = document.getElementById('productDetailContainer');
     const modal = document.getElementById('productDetailModal');
+    
+    // Reset scroll ke atas
+    if (container) {
+        container.scrollTop = 0;
+    }
     
     container.innerHTML = `
         <div class="product-detail-image" style="background-image: url('${product.image}');">
@@ -293,7 +298,6 @@ function buyNow(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
     
-    // Cek apakah sudah ada di cart
     const existing = cart.find(item => item.id === productId);
     if (existing) {
         existing.quantity++;
@@ -306,7 +310,6 @@ function buyNow(productId) {
     closeProductDetail();
     showNotification(`${product.name} ditambahkan!`, 'success');
     
-    // Buka cart
     renderCart();
     document.getElementById('cartModal').classList.add('active');
 }
@@ -380,13 +383,11 @@ function removeFromCart(id) {
 
 // ==================== AUTHENTICATION ====================
 function openAuthModal() {
-    const modal = document.getElementById('authModal');
-    if (modal) modal.classList.add('active');
+    document.getElementById('authModal').classList.add('active');
 }
 
 function closeAuthModal() {
-    const modal = document.getElementById('authModal');
-    if (modal) modal.classList.remove('active');
+    document.getElementById('authModal').classList.remove('active');
 }
 
 // LOGIN
@@ -545,10 +546,8 @@ function updateAdminDashboard() {
     const totalRevenue = ordersData.reduce((sum, order) => sum + order.total, 0);
     document.getElementById('statRevenue').innerText = 'Rp ' + totalRevenue.toLocaleString('id-ID');
     
-    // Chart sederhana
     drawChart();
     
-    // Orders
     const ordersContainer = document.getElementById('ordersList');
     if (ordersContainer) {
         if (ordersData.length === 0) {
@@ -576,7 +575,6 @@ function updateAdminDashboard() {
         }
     }
     
-    // Users
     const usersContainer = document.getElementById('usersList');
     if (usersContainer) {
         usersContainer.innerHTML = usersData.map(user => `
@@ -606,7 +604,6 @@ function drawChart() {
     const data = [85, 110, 135, 160, 190, 220];
     const maxVal = Math.max(...data) + 50;
     
-    // Grid
     ctx.strokeStyle = '#e0e0e0';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < 5; i++) {
@@ -621,7 +618,6 @@ function drawChart() {
         ctx.fillText(Math.round(maxVal * i / 5 / 10) * 10 + 'Jt', 35, y + 3);
     }
     
-    // Area
     ctx.beginPath();
     ctx.moveTo(40, h - 20);
     for (let i = 0; i < data.length; i++) {
@@ -640,7 +636,6 @@ function drawChart() {
     ctx.fillStyle = 'rgba(212, 175, 55, 0.2)';
     ctx.fill();
     
-    // Line
     ctx.beginPath();
     for (let i = 0; i < data.length; i++) {
         const x = 40 + (i * (w - 60) / (data.length - 1));
@@ -656,7 +651,6 @@ function drawChart() {
     ctx.lineWidth = 3;
     ctx.stroke();
     
-    // Labels
     ctx.fillStyle = '#666';
     ctx.font = '11px sans-serif';
     ctx.textAlign = 'center';
@@ -665,7 +659,6 @@ function drawChart() {
         ctx.fillText(months[i], x, h - 5);
     }
     
-    // Points
     for (let i = 0; i < data.length; i++) {
         const x = 40 + (i * (w - 60) / (data.length - 1));
         const y = h - 20 - ((data[i] / maxVal) * (h - 40));
@@ -681,13 +674,11 @@ function drawChart() {
 
 // ==================== EVENT LISTENERS ====================
 
-// User dropdown
 document.getElementById('userBtn')?.addEventListener('click', () => {
     if (!currentUser) openAuthModal();
     else document.getElementById('userDropdown').classList.toggle('active');
 });
 
-// Cart button
 document.getElementById('cartBtn')?.addEventListener('click', () => {
     if (!currentUser) {
         showNotification('Silakan login terlebih dahulu!', 'warning');
@@ -698,7 +689,6 @@ document.getElementById('cartBtn')?.addEventListener('click', () => {
     document.getElementById('cartModal').classList.add('active');
 });
 
-// Profile
 document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     if (currentUser) {
@@ -714,31 +704,26 @@ document.getElementById('profileMenuBtn')?.addEventListener('click', (e) => {
     document.getElementById('userDropdown').classList.remove('active');
 });
 
-// Settings
 document.getElementById('settingsMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('settingsModal').classList.add('active');
     document.getElementById('userDropdown').classList.remove('active');
 });
 
-// Admin Panel
 document.getElementById('adminMenuBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
     openAdminPanel();
     document.getElementById('userDropdown').classList.remove('active');
 });
 
-// Close Product Detail
 document.getElementById('closeProductDetail')?.addEventListener('click', closeProductDetail);
 
-// Click outside product detail
 document.getElementById('productDetailModal')?.addEventListener('click', (e) => {
     if (e.target === document.getElementById('productDetailModal')) {
         closeProductDetail();
     }
 });
 
-// Dark mode
 document.getElementById('darkModeBtn')?.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const icon = document.querySelector('#darkModeBtn i');
@@ -757,7 +742,6 @@ document.getElementById('settingsDarkBtn')?.addEventListener('click', () => {
     }
 });
 
-// Close modals
 const closeModalButtons = ['closeAuthModal', 'closeProfileModal', 'closeSettingsModal', 'closeAdminModal', 'closeCartModal', 'closeProfileBtn', 'closeSettingsBtn', 'closeAdminBtn'];
 closeModalButtons.forEach(id => {
     const btn = document.getElementById(id);
@@ -768,7 +752,6 @@ closeModalButtons.forEach(id => {
     }
 });
 
-// Navigation
 function showPage(pageId) {
     document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
     const targetPage = document.getElementById(pageId);
@@ -788,7 +771,6 @@ document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
     });
 });
 
-// Belanja Sekarang
 document.getElementById('shopBtn')?.addEventListener('click', () => {
     const productsSection = document.getElementById('productsSection');
     if (productsSection) {
@@ -796,12 +778,10 @@ document.getElementById('shopBtn')?.addEventListener('click', () => {
     }
 });
 
-// Hamburger
 document.getElementById('hamburgerBtn')?.addEventListener('click', () => {
     document.getElementById('navMenu').classList.toggle('active');
 });
 
-// Contact form
 document.getElementById('sendContactBtn')?.addEventListener('click', () => {
     const name = document.getElementById('contactName').value;
     const email = document.getElementById('contactEmail').value;
@@ -816,7 +796,6 @@ document.getElementById('sendContactBtn')?.addEventListener('click', () => {
     }
 });
 
-// Tabs
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
@@ -828,7 +807,6 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-// Admin tabs
 document.querySelectorAll('.admin-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.admin-tab-btn').forEach(t => t.classList.remove('active'));
@@ -840,7 +818,6 @@ document.querySelectorAll('.admin-tab-btn').forEach(btn => {
     });
 });
 
-// Click outside
 window.addEventListener('click', (e) => {
     const userBtnEl = document.getElementById('userBtn');
     const userDropdownEl = document.getElementById('userDropdown');
